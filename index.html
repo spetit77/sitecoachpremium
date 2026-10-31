@@ -295,7 +295,9 @@ section{padding:64px 0}
           <div class="progress-rail" id="progressRail"></div>
           <p class="step-count" id="stepCount">Étape 1 / 8</p>
 
-          <form class="form" id="applyForm" novalidate>
+          <form class="form" id="applyForm" name="candidature" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="candidature">
+            <p hidden><label>Ne pas remplir <input name="bot-field"></label></p>
             <div class="step" data-idx="0">
               <p class="step-title">Quel résultat vises-tu en priorité ?</p>
               <p class="step-note">Tes réponses m'aident à cerner ta situation avant toute proposition.</p>
@@ -527,7 +529,7 @@ section{padding:64px 0}
 /* ===== CONFIGURATION ===== */
 const CONFIG = {
   YOUTUBE_ID: '',                    // ex : 'dQw4w9WgXcQ' (ta vidéo de présentation)
-  SUBMIT_URL: '/api/submit-lead',    // endpoint qui reçoit les candidatures (voir api/submit-lead.js)
+  SUBMIT_URL: '/',                   // Netlify Forms : les candidatures arrivent dans Netlify > Forms > candidature
   THANKS_URL: 'merci.html',          // page affichée après envoi (réservation de l'appel)
 };
 
@@ -715,7 +717,7 @@ document.querySelectorAll('[data-carousel]').forEach(car => {
       if (location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(location.hostname) || !CONFIG.SUBMIT_URL) {
         console.warn('Mode local : candidature non envoyée', data);
       } else {
-        const res = await fetch(CONFIG.SUBMIT_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        const res = await fetch(CONFIG.SUBMIT_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data).toString() });
         if (!res.ok) throw new Error('HTTP ' + res.status);
       }
       try {
