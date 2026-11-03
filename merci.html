@@ -5,82 +5,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Candidature reçue · Steven Coaching</title>
+<meta name="description" content="Ta candidature est reçue. Réserve ton appel découverte de 30 minutes avec Steven.">
+<meta name="theme-color" content="#131209">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 <style>
-:root{
-  --bg:#0a0706;--glass:rgba(255,255,255,.045);--border:rgba(255,255,255,.11);--border-soft:rgba(255,255,255,.065);--border-accent:rgba(216,30,63,.5);
-  --text:#f7f0ec;--text-muted:#b3a29e;--text-faint:#756662;
-  --accent:#d81e3f;--accent-bright:#ff3b52;--ok:#7fb98c;--radius-lg:22px;
-  --serif:'Fraunces',Georgia,serif;--display:'Oswald',system-ui,sans-serif;--sans:'Work Sans',system-ui,-apple-system,sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(45% 35% at 0% 0%,rgba(216,30,63,.16),transparent 70%)}
-.topbar{border-bottom:1px solid var(--border-soft);height:58px;display:flex;align-items:center;justify-content:center}
-.logo{font-family:var(--display);font-weight:700;font-size:18px;text-transform:uppercase;text-decoration:none;color:var(--text);letter-spacing:.02em}
-.logo span{color:var(--accent-bright)}
-.container{max-width:640px;margin:0 auto;padding:40px 18px 60px;animation:in .6s ease}
-@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;border:1px solid rgba(127,185,140,.35);background:rgba(127,185,140,.08);color:var(--ok);font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
-h1{font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(28px,6vw,34px);line-height:1.2;margin:18px 0 10px}
-.lede{color:var(--text-muted);font-size:17px}
-.lede strong{color:var(--text)}
-.note{color:var(--text-faint);font-size:13px;margin-top:10px}
-.card{margin-top:30px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid var(--border);border-radius:var(--radius-lg);padding:34px 22px;text-align:center;box-shadow:0 30px 80px -40px rgba(0,0,0,.8)}
-.spinner{width:34px;height:34px;margin:0 auto 18px;border:3px solid rgba(255,255,255,.12);border-top-color:var(--accent-bright);border-radius:50%;animation:spin .9s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.status{color:var(--text-muted);font-size:15px;margin-bottom:22px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px 28px;border-radius:999px;font-family:var(--display);font-weight:600;font-size:17px;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;color:#fff;background:linear-gradient(180deg,var(--accent-bright),var(--accent));box-shadow:0 10px 34px -8px rgba(216,30,63,.75),inset 0 1px 0 rgba(255,255,255,.25);transition:transform .15s}
-.btn:hover{transform:translateY(-1px)}
-.btn[aria-disabled=true]{opacity:.45;pointer-events:none}
-.next{margin-top:34px;display:grid;gap:10px}
-.next li{list-style:none;display:flex;gap:12px;align-items:flex-start;color:var(--text-muted);font-size:14px}
-.next b{flex:none;width:24px;height:24px;border-radius:50%;border:1px solid var(--border-accent);color:var(--accent-bright);display:grid;place-items:center;font-size:12px;font-family:var(--display)}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  .booking { margin-top: 40px; text-align: center; }
+  .booking .bar { max-width: 320px; margin: 0 auto 24px; }
+  .booking .bar span { transform: scaleX(0); transition: none; }
+  .booking .bar span.go { transform: scaleX(1); transition: transform var(--delay, 3500ms) var(--ease); }
+  .next-steps { margin-top: 40px; }
+  .next-steps .num { flex: none; width: 24px; height: 24px; border-radius: 9999px; border: 1px solid var(--line-strong); display: grid; place-items: center; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--text); }
+  .ok-badge { border-color: rgba(127, 185, 140, .32); color: var(--ok); }
+  .ok-badge i { font-size: 16px; }
 </style>
 </head>
-<body>
-<header class="topbar"><a href="index.html" class="logo">Steven<span>Coaching</span></a></header>
+<body class="page">
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+<header>
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="index.html" class="nav-logo"><img src="favicon.svg" alt="" width="32" height="32">Steven Coaching</a>
+    <a href="index.html" class="btn btn-ghost btn-sm"><i class="ph ph-arrow-left"></i>Accueil</a>
+  </nav>
+</header>
 
-<main class="container">
-  <span class="badge">✓ Candidature reçue</span>
-  <h1>Merci<span id="who"></span>, c'est bien noté.</h1>
-  <p class="lede">Dernière étape : réserve ton <strong>appel découverte</strong>. 30 minutes, gratuit, en direct avec Steven.</p>
-  <p class="note">Si aucun créneau ne te va, je reviens vers toi sous 24h. Mais réserver maintenant reste le moyen le plus rapide d'avancer.</p>
+<main id="contenu">
+  <div class="container narrow">
+    <span class="badge ok-badge rise"><i class="ph-fill ph-check-circle"></i>Candidature reçue</span>
+    <h1 class="h1 rise" style="font-size:36px;line-height:40px">Merci<span id="who"></span>, ta candidature est bien arrivée</h1>
+    <p class="lede rise" style="margin-top:16px">Dernière étape : réserve ton appel découverte. 30 minutes, gratuit, en direct avec Steven.</p>
+    <p class="small rise" style="margin-top:8px">Si aucun créneau ne te convient, je reviens vers toi sous 24h. Réserver maintenant reste le moyen le plus rapide d'avancer.</p>
 
-  <div class="card">
-    <div class="spinner" id="spinner"></div>
-    <p class="status" id="status">Ouverture de mon agenda en cours…</p>
-    <a class="btn" id="bookBtn" href="#">Choisir mon créneau →</a>
+    <div class="card booking rise">
+      <div class="bar" aria-hidden="true"><span id="bar"></span></div>
+      <p class="muted" id="status" role="status" style="margin-bottom:24px">Ouverture de mon agenda</p>
+      <a class="btn btn-primary" id="bookBtn" href="index.html#postuler">Choisir mon créneau <i class="ph ph-arrow-right"></i></a>
+    </div>
+
+    <ol class="list next-steps reveal-group in" style="list-style:none">
+      <li><span class="num">1</span><span>Tu choisis l'heure qui t'arrange dans mon agenda.</span></li>
+      <li><span class="num">2</span><span>Pendant l'appel, on fait le point sur ta situation et ton objectif.</span></li>
+      <li><span class="num">3</span><span>Si on peut travailler ensemble, je te présente le plan adapté. Sinon, je te le dis franchement.</span></li>
+    </ol>
   </div>
-
-  <ol class="next">
-    <li><b>1</b><span>Tu choisis l'heure qui t'arrange dans mon agenda.</span></li>
-    <li><b>2</b><span>Pendant l'appel, on fait le point sur ta situation et ton objectif.</span></li>
-    <li><b>3</b><span>Si on peut travailler ensemble, je te présente le plan adapté. Sinon, je te le dis franchement.</span></li>
-  </ol>
 </main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="small">© <span id="year"></span> Steven Coaching</p>
+    <nav aria-label="Liens légaux"><a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Confidentialité</a></nav>
+  </div>
+</footer>
 
 <script>
 /* ===== CONFIGURATION ===== */
 const BOOKING_URL = '';        // ex : 'https://calendly.com/steven/appel-decouverte'
 const REDIRECT_DELAY = 3500;   // délai avant redirection automatique (ms)
 
-const btn = document.getElementById('bookBtn');
-const status = document.getElementById('status');
-try {
-  const name = sessionStorage.getItem('leadFirstName');
-  if (name) document.getElementById('who').textContent = ' ' + name;
-} catch (e) {}
+const btn = document.getElementById('bookBtn'), status = document.getElementById('status'), bar = document.getElementById('bar');
+try { const name = sessionStorage.getItem('leadFirstName'); if (name) document.getElementById('who').textContent = ' ' + name; } catch (e) {}
+document.getElementById('year').textContent = new Date().getFullYear();
 
 if (BOOKING_URL) {
   btn.href = BOOKING_URL;
-  setTimeout(() => { location.href = BOOKING_URL; }, REDIRECT_DELAY);
+  bar.style.setProperty('--delay', REDIRECT_DELAY + 'ms');
+  requestAnimationFrame(() => requestAnimationFrame(() => bar.classList.add('go')));
+  setTimeout(() => { status.textContent = 'Redirection vers mon agenda'; location.href = BOOKING_URL; }, REDIRECT_DELAY);
 } else {
-  document.getElementById('spinner').remove();
-  status.textContent = 'Lien de réservation à configurer (BOOKING_URL dans merci.html).';
+  bar.parentElement.hidden = true;
+  status.textContent = "L'agenda de réservation n'est pas encore configuré. Je te recontacte sous 24h.";
   btn.setAttribute('aria-disabled', 'true');
 }
 </script>

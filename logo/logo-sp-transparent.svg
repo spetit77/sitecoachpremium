@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <title>SP · logo coaching fitness</title>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#2a0a10"/>
+      <stop offset=".55" stop-color="#110807"/>
+      <stop offset="1" stop-color="#060404"/>
+    </radialGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff6a7a"/>
+      <stop offset=".45" stop-color="#ff2d48"/>
+      <stop offset="1" stop-color="#b3122f"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".5" stop-color="#e9dcd8"/>
+      <stop offset=".52" stop-color="#9b8a86"/>
+      <stop offset="1" stop-color="#f7f0ec"/>
+    </linearGradient>
+    <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff3b52"/>
+      <stop offset="1" stop-color="#ff3b52" stop-opacity=".25"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Fente diagonale « vitesse » qui découpe le monogramme -->
+    <mask id="slit" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024">
+      <rect width="1024" height="1024" fill="#fff"/>
+      <path d="M150 742 L874 302" stroke="#000" stroke-width="14"/>
+    </mask>
+  </defs>
+
+  <!-- Cadre hexagonal façon HUD -->
+  <g fill="none" stroke-linejoin="miter">
+    <path d="M512 112 L858 312 L858 712 L512 912 L166 712 L166 312 Z" stroke="url(#frame)" stroke-width="10"
+          stroke-dasharray="380 22 30 22" filter="url(#softglow)"/>
+    <path d="M512 150 L825 331 L825 693 L512 874 L199 693 L199 331 Z" stroke="#ff3b52" stroke-opacity=".22" stroke-width="2"/>
+  </g>
+  <!-- Repères techniques -->
+  <g fill="#ff3b52">
+    <rect x="504" y="86" width="16" height="16" transform="rotate(45 512 94)"/>
+    <rect x="504" y="922" width="16" height="16" transform="rotate(45 512 930)" opacity=".6"/>
+  </g>
+  <g stroke="#f7f0ec" stroke-opacity=".35" stroke-width="3">
+    <path d="M140 500 L120 500 M140 524 L120 524"/>
+    <path d="M884 500 L904 500 M884 524 L904 524"/>
+  </g>
+
+  <!-- Monogramme SP -->
+  <g transform="translate(512 512) scale(.8) translate(-505 -512)" fill="none"
+     stroke-width="64" stroke-linejoin="miter" stroke-linecap="butt">
+    <!-- S anguleux -->
+    <g filter="url(#softglow)">
+      <path mask="url(#slit)" d="M470 300 L270 300 L220 350 L220 462 L270 512 L420 512 L470 562 L470 674 L420 724 L220 724"
+            stroke="url(#chrome)"/>
+    </g>
+    <!-- P qui partage la ligne médiane -->
+    <g filter="url(#glow)">
+      <path mask="url(#slit)" d="M592 756 L592 300 L772 300 L822 350 L822 462 L772 512 L640 512"
+            stroke="url(#red)"/>
+    </g>
+  </g>
+</svg>

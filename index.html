@@ -3,514 +3,391 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Steven Coaching</title>
-<meta name="description" content="Coaching sportif et nutrition pour hommes actifs de plus de 30 ans. Accompagnement personnalisé par Steven.">
+<title>Steven Coaching · Coaching sportif pour hommes actifs de 30 ans et plus</title>
+<meta name="description" content="Perds 5 à 10 kg de gras avec un plan d'entraînement et de nutrition construit autour de ton emploi du temps. Suivi hebdomadaire et accès direct à Steven sur WhatsApp.">
+<meta name="theme-color" content="#131209">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Steven Coaching · Coaching sportif pour hommes actifs">
+<meta property="og:description" content="Un plan d'entraînement et de nutrition construit autour de ta vraie vie. Réponds à 8 questions pour vérifier ton éligibilité.">
+<meta property="og:image" content="assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0a0706;--glass:rgba(255,255,255,.045);--glass-strong:rgba(255,255,255,.08);
-  --border:rgba(255,255,255,.11);--border-soft:rgba(255,255,255,.065);--border-accent:rgba(216,30,63,.5);
-  --text:#f7f0ec;--text-muted:#b3a29e;--text-faint:#756662;
-  --accent:#d81e3f;--accent-bright:#ff3b52;--accent-deep:#3c0a14;--ok:#7fb98c;
-  --radius-lg:22px;--radius-md:15px;--radius-sm:9px;--maxw:620px;
-  --serif:'Fraunces',Georgia,serif;--display:'Oswald',system-ui,sans-serif;--sans:'Work Sans',system-ui,-apple-system,sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
-  background:radial-gradient(60% 40% at 50% 0%,rgba(216,30,63,.18),transparent 70%),radial-gradient(40% 30% at 100% 60%,rgba(216,30,63,.07),transparent 70%)}
-img{max-width:100%;display:block}
-a{color:inherit}
-.container{max-width:var(--maxw);margin:0 auto;padding:0 18px}
-section{padding:64px 0}
-.eyebrow{font-family:var(--serif);font-style:italic;color:var(--accent-bright);font-size:15px;margin-bottom:10px}
-.h1,.h2{font-family:var(--display);text-transform:uppercase;letter-spacing:.01em;line-height:1.08}
-.h1{font-size:clamp(32px,7vw,43px);margin:14px 0 18px}
-.h2{font-size:clamp(25px,5.5vw,32px);margin-bottom:14px}
-.h1 em,.h2 em{font-style:normal;color:var(--accent-bright)}
-.lede{color:var(--text-muted);font-size:17px}
-.muted{color:var(--text-muted)}
-.small{font-size:13px;color:var(--text-faint)}
-
-/* Topbar */
-.topbar{position:sticky;top:0;z-index:50;background:rgba(10,7,6,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
-.topbar.scrolled{border-bottom-color:var(--border-soft)}
-.topbar .container{display:flex;align-items:center;justify-content:space-between;height:62px}
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:17px;text-transform:uppercase;text-decoration:none;letter-spacing:.02em}
-.logo-mark{width:30px;height:30px;border-radius:50%;background:var(--accent-deep);border:1px solid var(--border-accent);display:grid;place-items:center;color:var(--accent-bright);font-size:14px}
-.logo span{color:var(--accent-bright)}
-
-/* Buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-weight:600;text-decoration:none;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s}
-.btn-accent{background:linear-gradient(180deg,var(--accent-bright),var(--accent));color:#fff;box-shadow:0 8px 30px -8px rgba(216,30,63,.7),inset 0 1px 0 rgba(255,255,255,.25)}
-.btn-accent:hover{transform:translateY(-1px);box-shadow:0 12px 36px -8px rgba(216,30,63,.85),inset 0 1px 0 rgba(255,255,255,.25)}
-.btn-sm{padding:8px 18px;font-size:13px}
-.btn-lg{padding:17px 30px;font-size:17px}
-.btn-block{width:100%}
-.btn-ghost{background:none;border:none;color:var(--text-muted);font-family:var(--sans);font-size:14px;cursor:pointer;padding:10px 4px}
-.btn-ghost:hover{color:var(--text)}
-.cta-meta{margin-top:12px;font-size:13px;color:var(--text-faint);text-align:center}
-
-/* Hero */
-.hero{padding-top:44px;padding-bottom:28px;text-align:center}
-.pill{display:inline-block;padding:6px 14px;border-radius:999px;border:1px solid var(--border-accent);background:rgba(216,30,63,.09);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#ffc9d0}
-.hero .lede{max-width:520px;margin:0 auto}
-.hero-quote{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:18px;color:var(--text)}
-
-/* VSL */
-.vsl{padding-top:20px;text-align:center}
-.vsl-meta{color:var(--text-faint);font-size:13px;margin-bottom:16px;letter-spacing:.04em;text-transform:uppercase}
-.vsl-wrap{position:relative;aspect-ratio:16/9;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);background:#000;box-shadow:0 30px 80px -30px rgba(216,30,63,.45)}
-.vsl-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.vsl-unmute{position:absolute;z-index:2;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(10,7,6,.75);backdrop-filter:blur(8px);color:#fff;font-family:var(--sans);font-weight:600;font-size:14px;cursor:pointer;animation:pulse 2s infinite}
-.vsl-unmute[hidden]{display:none}
-.vsl-placeholder{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;color:var(--text-faint);font-size:14px;background:repeating-linear-gradient(45deg,#120c0b,#120c0b 12px,#0e0908 12px,#0e0908 24px)}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,59,82,.5)}50%{box-shadow:0 0 0 10px rgba(255,59,82,0)}}
-
-/* Card / glass */
-.card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px}
-.mid-cta{padding-top:24px;text-align:center}
-.mid-cta .card{padding:30px 22px}
-.mid-cta .h2{font-size:clamp(22px,5vw,27px)}
-
-/* Carousels */
-.carousel{position:relative}
-.track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 18px 8px;margin:0 -18px;cursor:grab;-webkit-overflow-scrolling:touch}
-.track::-webkit-scrollbar{display:none}
-.track.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
-.track>*{scroll-snap-align:center;flex:0 0 88%}
-.carousel-foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
-.carousel-nav{display:flex;gap:8px}
-.carousel-nav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--glass);color:var(--text);font-size:18px;cursor:pointer;transition:background .2s,opacity .2s}
-.carousel-nav button:hover{background:var(--glass-strong)}
-.carousel-nav button:disabled{opacity:.35;cursor:default}
-.swipe-hint{font-size:13px;color:var(--text-faint);margin-bottom:14px}
-.dots{display:flex;gap:6px}
-.dots i{width:6px;height:6px;border-radius:99px;background:var(--border);transition:all .3s}
-.dots i.on{width:18px;background:var(--accent-bright)}
-
-/* Case studies */
-.proof-intro{padding-bottom:20px;text-align:center}
-.cases-wrap{padding-top:0}
-.case{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;display:flex;flex-direction:column;gap:14px}
-.case-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
-.case-name{font-family:var(--display);font-size:22px;text-transform:uppercase}
-.case-tag{font-family:var(--display);font-size:13px;letter-spacing:.06em;padding:4px 10px;border-radius:999px;background:rgba(216,30,63,.14);color:#ffc9d0;border:1px solid var(--border-accent)}
-.case-photo{aspect-ratio:4/3;border-radius:var(--radius-md);background:linear-gradient(135deg,#1a1110,#120b0a);border:1px dashed var(--border);display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
-.case-photo div{display:grid;place-items:center;font-size:12px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.08em}
-.case-photo div+div{border-left:1px dashed var(--border)}
-.case p{color:var(--text-muted);font-size:15px}
-.case-lists{display:grid;gap:10px}
-.case-list h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;font-weight:600}
-.case-list li{list-style:none;font-size:14px;padding-left:22px;position:relative;margin-bottom:4px}
-.case-list.before li::before{content:"✕";position:absolute;left:0;color:var(--accent-bright);font-size:12px;top:2px}
-.case-list.after li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-size:13px}
-.case-result{margin-top:auto;padding:14px 16px;border-radius:var(--radius-md);background:linear-gradient(135deg,rgba(216,30,63,.16),rgba(216,30,63,.04));border:1px solid var(--border-accent)}
-.case-result strong{font-family:var(--display);font-size:30px;display:block;line-height:1.1;color:#fff}
-.case-result span{font-size:13px;color:var(--text-muted)}
-.placeholder-note{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#ffd38a;background:rgba(255,190,80,.08);border:1px dashed rgba(255,190,80,.35);padding:3px 8px;border-radius:6px}
-
-/* Apply form */
-.apply{text-align:center}
-.apply-card{margin-top:24px;text-align:left;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px 20px;box-shadow:0 30px 80px -40px rgba(216,30,63,.5)}
-.mini-trust{text-align:center;font-size:13px;color:var(--text-faint);margin-bottom:16px}
-.progress-rail{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;margin-bottom:10px}
-.seg{height:4px;border-radius:99px;background:var(--border);transition:background .3s}
-.seg.done{background:var(--accent)}
-.seg.active{background:var(--accent-bright);box-shadow:0 0 10px rgba(255,59,82,.6)}
-.step-count{font-family:var(--display);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px}
-.step{animation:stepIn .35s ease}
-@keyframes stepIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
-.step-title{font-family:var(--display);font-size:22px;text-transform:uppercase;line-height:1.2;margin-bottom:6px}
-.step-note{font-size:14px;color:var(--text-muted);margin-bottom:6px}
-.qoptions{display:grid;gap:10px;margin-top:16px}
-.qopt{display:flex;align-items:center;gap:12px;padding:15px 16px;border-radius:var(--radius-md);border:1px solid var(--border);background:rgba(255,255,255,.02);cursor:pointer;transition:border-color .2s,background .2s,transform .1s}
-.qopt:hover{border-color:rgba(255,255,255,.22);background:var(--glass)}
-.qopt:active{transform:scale(.99)}
-.qopt input{position:absolute;opacity:0;pointer-events:none}
-.qopt .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--text-faint);flex:none;position:relative;transition:border-color .2s}
-.qopt input:checked~.dot{border-color:var(--accent-bright)}
-.qopt input:checked~.dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--accent-bright)}
-.qopt:has(input:checked){border-color:var(--border-accent);background:rgba(216,30,63,.1)}
-.qopt input:focus-visible~.dot{outline:2px solid var(--accent-bright);outline-offset:3px}
-.form label.field{display:block;font-size:14px;font-weight:500;color:var(--text-muted);margin-top:14px}
-.form input[type=text],.form input[type=tel],.form input[type=email],.form input[type=number]{display:block;width:100%;margin-top:6px;padding:14px 15px;border-radius:var(--radius-sm);border:1px solid var(--border);background:rgba(0,0,0,.35);color:var(--text);font:inherit;font-size:16px;transition:border-color .2s}
-.form input:focus{outline:none;border-color:var(--accent-bright)}
-.form input.invalid{border-color:var(--accent-bright);background:rgba(216,30,63,.08)}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.step-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px}
-.step-error{color:var(--accent-bright);font-size:13px;margin-top:10px;min-height:1em}
-.consent{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:12px;color:var(--text-faint)}
-.consent input{margin-top:3px;accent-color:var(--accent)}
-.success{text-align:center;padding:20px 0}
-.success-icon{width:64px;height:64px;margin:0 auto 16px;border-radius:50%;display:grid;place-items:center;background:rgba(127,185,140,.12);border:1px solid rgba(127,185,140,.4);color:var(--ok);font-size:28px}
-.success h3{font-family:var(--display);text-transform:uppercase;font-size:24px;margin-bottom:8px}
-.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* Transformations gallery */
-.tf{aspect-ratio:3/4;border-radius:var(--radius-md);border:1px dashed var(--border);background:linear-gradient(160deg,#1a1110,#0f0a09);display:flex;flex-direction:column;justify-content:flex-end;padding:14px;position:relative;overflow:hidden}
-.tf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.tf .tf-label{position:relative;font-family:var(--display);text-transform:uppercase;font-size:14px;background:rgba(10,7,6,.7);padding:6px 10px;border-radius:8px;align-self:flex-start}
-.transformations .track>*{flex-basis:62%}
-
-/* About */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 26px}
-.stat{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 10px;text-align:center}
-.stat strong{display:block;font-family:var(--display);font-size:30px;color:var(--accent-bright);line-height:1.1}
-.stat span{font-size:12px;color:var(--text-muted)}
-.coach-photo{aspect-ratio:4/5;border-radius:var(--radius-lg);border:1px dashed var(--border);background:linear-gradient(160deg,#1d1210,#0e0908);display:grid;place-items:center;color:var(--text-faint);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-.about-body h3{font-family:var(--serif);font-weight:600;font-size:19px;margin:22px 0 6px}
-.about-body p{color:var(--text-muted)}
-
-/* Offer */
-.offer-list{display:grid;gap:12px;margin-top:22px}
-.offer-item{display:flex;gap:14px;align-items:flex-start;padding:18px;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius-md)}
-.offer-item .check{flex:none;width:28px;height:28px;border-radius:50%;background:rgba(216,30,63,.14);border:1px solid var(--border-accent);color:var(--accent-bright);display:grid;place-items:center;font-size:14px;font-weight:700}
-.offer-item h3{font-size:16px;font-weight:600;margin-bottom:2px}
-.offer-item p{font-size:14px;color:var(--text-muted)}
-
-/* Reviews */
-.review{background:#f4efe9;color:#1b1412;border-radius:var(--radius-md);padding:18px;font-size:14px;line-height:1.5;display:flex;flex-direction:column;gap:10px;min-height:220px}
-.review .stars{color:#e0a326;letter-spacing:2px}
-.review .who{margin-top:auto;font-weight:600;font-size:13px;color:#5a4a46}
-.avis .track>*{flex-basis:78%}
-
-/* Qualification */
-.qual-list{display:grid;gap:12px;margin-top:22px}
-.qual-item{padding:18px 20px;border-radius:var(--radius-md);background:var(--glass);border:1px solid var(--border);border-left:3px solid var(--accent)}
-.qual-item h3{font-family:var(--serif);font-style:italic;font-weight:600;font-size:17px;margin-bottom:4px}
-.qual-item p{font-size:14px;color:var(--text-muted)}
-
-/* FAQ */
-.faq-list{margin-top:22px;display:grid;gap:10px}
-.faq-item{border:1px solid var(--border);border-radius:var(--radius-md);background:var(--glass);overflow:hidden}
-.faq-item summary{list-style:none;cursor:pointer;padding:18px 48px 18px 18px;font-weight:600;position:relative;font-size:15px}
-.faq-item summary::-webkit-details-marker{display:none}
-.faq-item summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--accent-bright);transition:transform .25s}
-.faq-item[open] summary::after{transform:translateY(-50%) rotate(45deg)}
-.faq-item p{padding:0 18px 18px;color:var(--text-muted);font-size:15px}
-
-/* Final CTA + footer */
-.final-cta{text-align:center}
-.final-cta .card{padding:36px 22px;background:linear-gradient(180deg,rgba(216,30,63,.13),rgba(255,255,255,.03));border-color:var(--border-accent)}
-.footer{padding:30px 0 100px;text-align:center;font-size:13px;color:var(--text-faint);border-top:1px solid var(--border-soft)}
-.footer a{color:var(--text-muted);text-decoration:none;margin:0 8px}
-
-/* Sticky mobile CTA */
-.sticky-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:40;transform:translateY(140%);transition:transform .35s ease}
-.sticky-cta.show{transform:none}
-@media(min-width:720px){.sticky-cta{display:none}.footer{padding-bottom:30px}.track>*{flex-basis:70%}.transformations .track>*{flex-basis:40%}.avis .track>*{flex-basis:48%}}
-
-/* Reveal */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 
-<header class="topbar" id="topbar">
-  <div class="container">
-    <a href="#" class="logo"><span class="logo-mark">S</span>Steven<span>Coaching</span></a>
-    <a href="#postuler" class="btn btn-accent btn-sm">Postuler</a>
+<!-- Navigation flottante -->
+<header>
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="#" class="nav-logo" aria-label="Steven Coaching, retour en haut"><img src="favicon.svg" alt="" width="32" height="32">Steven Coaching</a>
+    <ul class="nav-links">
+      <li><a href="#resultats">Résultats</a></li>
+      <li><a href="#methode">Méthode</a></li>
+      <li><a href="#coach">Coach</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#postuler" class="btn btn-primary btn-sm">Postuler</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#resultats">Résultats</a>
+    <a href="#methode">Méthode</a>
+    <a href="#coach">Coach</a>
+    <a href="#faq">FAQ</a>
+    <a href="#postuler" class="btn btn-primary">Vérifier mon éligibilité <i class="ph ph-arrow-right"></i></a>
   </div>
 </header>
 
-<main>
-  <!-- HERO -->
+<main id="contenu">
+  <!-- 1. Hero -->
   <section class="hero">
     <div class="container">
-      <span class="pill reveal">Hommes actifs de 30 ans et plus, déjà à l'entraînement</span>
-      <h1 class="h1 reveal">Élimine 5 à 10 kg de gras et <em>construis enfin le corps</em> que tu mérites.</h1>
-      <p class="lede reveal">Une méthode pensée pour un agenda chargé : pas de séances interminables, pas de diète punitive, pas de sacrifice sur ta carrière ou tes proches.</p>
-      <p class="hero-quote reveal">Ce n'est pas ta volonté qui coince. C'est l'absence d'un plan taillé pour ton quotidien.</p>
-    </div>
-  </section>
+      <span class="badge rise"><span class="pulse"></span>Pour les hommes actifs de 30 ans et plus</span>
+      <h1 class="h1" id="heroTitle">Perds 5 à 10 kg de gras<br class="br-md"> sans sacrifier ton travail<br class="br-md"> ni ta vie de famille</h1>
+      <p class="lede rise">Un plan d'entraînement et de nutrition construit autour de ton agenda réel, ajusté chaque semaine avec moi. Pas de séances de deux heures, pas de régime intenable.</p>
+      <div class="hero-actions rise">
+        <a href="#postuler" class="btn btn-primary">Vérifier mon éligibilité <i class="ph ph-arrow-right"></i></a>
+        <span class="small">8 questions · 3 minutes · réponse sous 24h</span>
+      </div>
+      <div class="proof-row rise">
+        <span><i class="ph-fill ph-users-three"></i><strong data-proof-clients>100+</strong>&nbsp;hommes accompagnés</span>
+        <span><i class="ph-fill ph-calendar-check"></i>Bilan chaque semaine</span>
+        <span><i class="ph-fill ph-whatsapp-logo"></i>Accès direct sur WhatsApp</span>
+      </div>
 
-  <!-- VSL -->
-  <section class="vsl">
-    <div class="container">
-      <h2 class="h2 reveal">Prends 5 minutes pour cette vidéo avant de candidater.</h2>
-      <p class="vsl-meta">▶ Vidéo · Active le son</p>
-      <div class="vsl-wrap reveal" id="vslWrap">
-        <button type="button" class="vsl-unmute" id="vslUnmute" hidden>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-          Activer le son
+      <div class="video rise" id="video">
+        <button type="button" class="video-facade" id="videoFacade" aria-label="Lire la vidéo de présentation">
+          <img src="logo/logo-sp-transparent.svg" alt="">
+          <span class="play"><i class="ph-fill ph-play"></i></span>
+          <span class="video-label">Regarde cette vidéo avant de postuler</span>
+          <span class="video-sub" id="videoSub">5 minutes · active le son</span>
         </button>
-        <div class="vsl-placeholder" id="vslPlaceholder">Ta vidéo de présentation apparaîtra ici.<br>Renseigne <code>YOUTUBE_ID</code> dans le script en bas de page.</div>
       </div>
     </div>
   </section>
 
-  <!-- MID CTA -->
-  <section class="mid-cta">
+  <!-- 2. Problème et solution -->
+  <section class="compare" id="methode">
     <div class="container">
-      <div class="card reveal">
-        <h2 class="h2">On bâtit ce plan ensemble ?</h2>
-        <p class="muted" style="margin-bottom:22px">8 questions rapides sur ton profil pour savoir si mon accompagnement est adapté à toi.</p>
-        <a href="#postuler" class="btn btn-accent btn-lg btn-block">Vérifier mon éligibilité →</a>
-        <p class="cta-meta">8 questions · environ 3 minutes · réponse sous 24h</p>
+      <div class="section-head center reveal">
+        <span class="eyebrow">Le vrai problème</span>
+        <h2 class="h2">Tu t'entraînes déjà.<br class="br-md"> Ton corps, lui, ne bouge plus.</h2>
+        <p class="lede">Ce n'est presque jamais une question d'effort. C'est l'absence d'un plan pensé pour ta semaine.</p>
+      </div>
+      <div class="grid grid-2 reveal-group">
+        <div class="card">
+          <h3 class="h3"><i class="ph ph-x-circle" style="color:var(--faint)"></i>Seul, sans cadre</h3>
+          <ul class="list bad">
+            <li><i class="ph ph-minus"></i>Des séances improvisées selon l'humeur du jour</li>
+            <li><i class="ph ph-minus"></i>Une alimentation sérieuse en semaine, qui lâche le samedi soir</li>
+            <li><i class="ph ph-minus"></i>Aucun repère pour savoir quoi ajuster, ni quand</li>
+            <li><i class="ph ph-minus"></i>Des mois d'efforts pour un miroir qui ne change pas</li>
+          </ul>
+        </div>
+        <div class="card is-good">
+          <h3 class="h3"><i class="ph-fill ph-check-circle" style="color:var(--ok)"></i>Avec ton plan sur mesure</h3>
+          <ul class="list good">
+            <li><i class="ph ph-check"></i>Des séances calées sur ton temps réellement disponible</li>
+            <li><i class="ph ph-check"></i>Une nutrition souple qui tient avec les repas pro et les sorties</li>
+            <li><i class="ph ph-check"></i>Un bilan chaque semaine et des ajustements précis</li>
+            <li><i class="ph ph-check"></i>Des résultats visibles, semaine après semaine</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- PROOF INTRO -->
-  <section class="proof-intro">
+  <!-- 3. Phrase révélée mot à mot -->
+  <section class="tagline" aria-label="Notre conviction">
     <div class="container">
-      <p class="eyebrow reveal">Résultats de mes élèves</p>
-      <h2 class="h2 reveal">Des agendas pleins.<br>Des responsabilités.<br><em>Et des corps qui changent quand même.</em></h2>
-      <p class="muted reveal">Leurs parcours, avant et après.</p>
+      <p id="tagline">Ce n'est pas ta volonté qui coince. C'est <span class="accent">l'absence d'un plan</span> taillé pour ta vraie vie.</p>
     </div>
   </section>
 
-  <!-- CASE STUDIES -->
-  <section class="cases-wrap">
+  <!-- 4. Résultats -->
+  <section id="resultats">
     <div class="container">
-      <p class="swipe-hint">← Glisse pour découvrir chaque transformation →</p>
-      <div class="carousel" data-carousel>
+      <div class="carousel-head section-head reveal">
+        <div>
+          <span class="eyebrow">Résultats d'élèves</span>
+          <h2 class="h2">Des agendas pleins.<br class="br-md"> Des corps qui changent quand même.</h2>
+        </div>
+      </div>
+      <div class="carousel reveal" data-carousel>
         <div class="track" id="casesTrack"></div>
         <div class="carousel-foot">
-          <span class="small" data-count></span>
-          <div class="dots" data-dots></div>
-          <div class="carousel-nav"><button type="button" data-prev aria-label="Précédent">‹</button><button type="button" data-next aria-label="Suivant">›</button></div>
+          <div class="progress-dots" data-dots></div>
+          <div class="carousel-nav">
+            <button type="button" class="icon-btn" data-prev aria-label="Résultat précédent"><i class="ph ph-caret-left"></i></button>
+            <button type="button" class="icon-btn" data-next aria-label="Résultat suivant"><i class="ph ph-caret-right"></i></button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- APPLY / QUIZ -->
-  <section id="postuler" class="apply">
+  <!-- 5. Ce qui est inclus -->
+  <section>
     <div class="container">
-      <p class="eyebrow">Ton profil</p>
-      <h2 class="h2">Mon coaching est-il fait pour toi&nbsp;?</h2>
-      <p class="lede">8 questions sur où tu en es aujourd'hui. Compte environ 3 minutes.</p>
+      <div class="section-head center reveal">
+        <span class="eyebrow">L'accompagnement</span>
+        <h2 class="h2">Trois mois où tu n'as<br class="br-md"> plus rien à deviner</h2>
+        <p class="lede">Chaque élément est là pour une raison : t'éviter de stagner et te faire gagner du temps.</p>
+      </div>
+      <div class="grid grid-3 reveal-group">
+        <article class="card feature hover-lift"><div class="icon-tile"><i class="ph ph-calendar-dots"></i></div><h3 class="h3">Un plan autour de ton agenda</h3><p>Séances et nutrition calées sur tes horaires, tes contraintes et ton objectif.</p></article>
+        <article class="card feature hover-lift"><div class="icon-tile"><i class="ph ph-chart-line-up"></i></div><h3 class="h3">Un bilan chaque semaine</h3><p>On lit tes chiffres ensemble et on corrige le tir avant que tu ne stagnes.</p></article>
+        <article class="card feature hover-lift"><div class="icon-tile"><i class="ph ph-video-camera"></i></div><h3 class="h3">Ta technique corrigée en vidéo</h3><p>Filme tes exercices, je te renvoie des corrections précises pour progresser sans te blesser.</p></article>
+        <article class="card feature hover-lift"><div class="icon-tile"><i class="ph ph-whatsapp-logo"></i></div><h3 class="h3">Une réponse rapide sur WhatsApp</h3><p>Un resto, un déplacement, un doute : tu sais quoi faire sans attendre le prochain bilan.</p></article>
+        <article class="card feature hover-lift"><div class="icon-tile"><i class="ph ph-device-mobile"></i></div><h3 class="h3">Une application de suivi</h3><p>Programme, progression et consignes réunis au même endroit, dans ta poche.</p></article>
+        <article class="card feature hover-lift"><div class="icon-tile"><i class="ph ph-users-three"></i></div><h3 class="h3">Le groupe des élèves</h3><p>Tu avances avec des hommes qui ont les mêmes objectifs et les mêmes contraintes.</p></article>
+      </div>
+    </div>
+  </section>
 
-      <div class="apply-card">
-        <div id="formArea">
-          <p class="mini-trust">8 questions · 3 minutes · Réponse sous 24h</p>
-          <div class="progress-rail" id="progressRail"></div>
-          <p class="step-count" id="stepCount">Étape 1 / 8</p>
+  <!-- 6. Comment ça marche -->
+  <section>
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Comment ça marche</span>
+        <h2 class="h2">Trois étapes pour démarrer</h2>
+      </div>
+      <ol class="grid grid-3 steps reveal-group" style="list-style:none">
+        <li class="card step-card"><div class="num">1</div><h3 class="h3">Tu réponds aux 8 questions</h3><p class="muted">Trois minutes pour me décrire ta situation, ton objectif et tes contraintes.</p></li>
+        <li class="card step-card"><div class="num">2</div><h3 class="h3">On fait un appel de 30 minutes</h3><p class="muted">Gratuit et sans engagement. On regarde ensemble ce qui bloque et ce qui est réaliste.</p></li>
+        <li class="card step-card"><div class="num">3</div><h3 class="h3">Ton plan démarre</h3><p class="muted">Si on travaille ensemble, tu reçois ton programme et ton premier bilan est fixé.</p></li>
+      </ol>
+    </div>
+  </section>
 
-          <form class="form" id="applyForm" name="candidature" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+  <!-- 7. Questionnaire -->
+  <section id="postuler">
+    <div class="container">
+      <div class="apply-grid">
+        <div class="apply-aside reveal">
+          <span class="eyebrow">Ton profil</span>
+          <h2 class="h2">Mon coaching est fait pour toi ?</h2>
+          <p class="lede">Réponds à 8 questions sur ta situation. Je lis chaque réponse personnellement.</p>
+          <ul class="list good">
+            <li><i class="ph ph-timer"></i>Environ 3 minutes</li>
+            <li><i class="ph ph-chat-circle-dots"></i>Une réponse de ma part sous 24h</li>
+            <li><i class="ph ph-shield-check"></i>Aucun engagement, aucun paiement</li>
+          </ul>
+        </div>
+
+        <div class="card quiz reveal">
+          <div class="quiz-top"><strong id="stepCount">Étape 1 sur 8</strong><span class="small" id="stepHint">Choisis une réponse</span></div>
+          <div class="bar" aria-hidden="true"><span id="bar"></span></div>
+
+          <form id="applyForm" name="candidature" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
             <input type="hidden" name="form-name" value="candidature">
             <p hidden><label>Ne pas remplir <input name="bot-field"></label></p>
-            <div class="step" data-idx="0">
-              <p class="step-title">Quel résultat vises-tu en priorité ?</p>
-              <p class="step-note">Tes réponses m'aident à cerner ta situation avant toute proposition.</p>
-              <div class="qoptions">
-                <label class="qopt"><input type="radio" name="objectif" value="Perdre du gras" required><span class="dot"></span><span class="label">Perdre du gras</span></label>
-                <label class="qopt"><input type="radio" name="objectif" value="Gagner du muscle"><span class="dot"></span><span class="label">Gagner du muscle</span></label>
-                <label class="qopt"><input type="radio" name="objectif" value="Les deux (recomposition)"><span class="dot"></span><span class="label">Les deux (recomposition)</span></label>
-                <label class="qopt"><input type="radio" name="objectif" value="Repartir après un arrêt"><span class="dot"></span><span class="label">Repartir après un arrêt</span></label>
-              </div>
-            </div>
 
-            <div class="step" data-idx="1" hidden>
-              <p class="step-title">Depuis quand stagnes-tu malgré tes efforts ?</p>
-              <div class="qoptions">
-                <label class="qopt"><input type="radio" name="dureeBlocage" value="Moins de 3 mois" required><span class="dot"></span><span class="label">Moins de 3 mois</span></label>
-                <label class="qopt"><input type="radio" name="dureeBlocage" value="3 à 6 mois"><span class="dot"></span><span class="label">Entre 3 et 6 mois</span></label>
-                <label class="qopt"><input type="radio" name="dureeBlocage" value="6 à 12 mois"><span class="dot"></span><span class="label">Entre 6 et 12 mois</span></label>
-                <label class="qopt"><input type="radio" name="dureeBlocage" value="Plus d'un an"><span class="dot"></span><span class="label">Plus d'un an</span></label>
+            <fieldset class="step" data-idx="0" style="border:0">
+              <legend class="step-title">Quel est ton objectif principal ?</legend>
+              <p class="step-note">Tes réponses m'aident à comprendre ta situation avant toute proposition.</p>
+              <div class="options">
+                <label class="opt"><input type="radio" name="objectif" value="Perdre du gras" required><span class="radio"></span>Perdre du gras</label>
+                <label class="opt"><input type="radio" name="objectif" value="Gagner du muscle"><span class="radio"></span>Gagner du muscle</label>
+                <label class="opt"><input type="radio" name="objectif" value="Les deux (recomposition)"><span class="radio"></span>Les deux à la fois</label>
+                <label class="opt"><input type="radio" name="objectif" value="Repartir après un arrêt"><span class="radio"></span>Repartir après un arrêt</label>
               </div>
-              <div class="step-actions"><button type="button" class="btn-ghost step-back">← Retour</button></div>
-            </div>
+            </fieldset>
 
-            <div class="step" data-idx="2" hidden>
-              <p class="step-title">Quel a été ton principal frein jusqu'à présent ?</p>
-              <div class="qoptions">
-                <label class="qopt"><input type="radio" name="obstacle" value="Pas de plan clair" required><span class="dot"></span><span class="label">Pas de plan clair ni de structure</span></label>
-                <label class="qopt"><input type="radio" name="obstacle" value="Manque de temps"><span class="dot"></span><span class="label">Un vrai manque de temps</span></label>
-                <label class="qopt"><input type="radio" name="obstacle" value="Alimentation / week-ends"><span class="dot"></span><span class="label">L'alimentation, surtout le week-end</span></label>
-                <label class="qopt"><input type="radio" name="obstacle" value="Régularité / motivation"><span class="dot"></span><span class="label">La régularité sur la durée</span></label>
+            <fieldset class="step" data-idx="1" hidden style="border:0">
+              <legend class="step-title">Depuis combien de temps tu stagnes malgré tes efforts ?</legend>
+              <div class="options">
+                <label class="opt"><input type="radio" name="dureeBlocage" value="Moins de 3 mois" required><span class="radio"></span>Moins de 3 mois</label>
+                <label class="opt"><input type="radio" name="dureeBlocage" value="3 à 6 mois"><span class="radio"></span>Entre 3 et 6 mois</label>
+                <label class="opt"><input type="radio" name="dureeBlocage" value="6 à 12 mois"><span class="radio"></span>Entre 6 et 12 mois</label>
+                <label class="opt"><input type="radio" name="dureeBlocage" value="Plus d'un an"><span class="radio"></span>Plus d'un an</label>
               </div>
-              <div class="step-actions"><button type="button" class="btn-ghost step-back">← Retour</button></div>
-            </div>
+              <div class="step-actions"><button type="button" class="btn btn-ghost step-back"><i class="ph ph-arrow-left"></i>Retour</button></div>
+            </fieldset>
 
-            <div class="step" data-idx="3" hidden>
-              <p class="step-title">Si le plan proposé te convient, es-tu prêt à investir dans un accompagnement ?</p>
-              <div class="qoptions">
-                <label class="qopt"><input type="radio" name="pretInvestir" value="Oui, si c'est adapté" required><span class="dot"></span><span class="label">Oui, si c'est vraiment adapté à moi</span></label>
-                <label class="qopt"><input type="radio" name="pretInvestir" value="Je dois y réfléchir"><span class="dot"></span><span class="label">Il faut que j'y réfléchisse</span></label>
-                <label class="qopt"><input type="radio" name="pretInvestir" value="Non, je cherche du gratuit"><span class="dot"></span><span class="label">Non, je cherche une solution gratuite</span></label>
+            <fieldset class="step" data-idx="2" hidden style="border:0">
+              <legend class="step-title">Quel a été ton principal frein jusqu'ici ?</legend>
+              <div class="options">
+                <label class="opt"><input type="radio" name="obstacle" value="Pas de plan clair" required><span class="radio"></span>Pas de plan clair ni de structure</label>
+                <label class="opt"><input type="radio" name="obstacle" value="Manque de temps"><span class="radio"></span>Un vrai manque de temps</label>
+                <label class="opt"><input type="radio" name="obstacle" value="Alimentation"><span class="radio"></span>L'alimentation, surtout le samedi soir</label>
+                <label class="opt"><input type="radio" name="obstacle" value="Régularité"><span class="radio"></span>La régularité sur la durée</label>
               </div>
-              <div class="step-actions"><button type="button" class="btn-ghost step-back">← Retour</button></div>
-            </div>
+              <div class="step-actions"><button type="button" class="btn btn-ghost step-back"><i class="ph ph-arrow-left"></i>Retour</button></div>
+            </fieldset>
 
-            <div class="step" data-idx="4" hidden>
-              <p class="step-title">Tu voudrais démarrer quand ?</p>
-              <div class="qoptions">
-                <label class="qopt"><input type="radio" name="timing" value="Dès maintenant" required><span class="dot"></span><span class="label">Dès que possible</span></label>
-                <label class="qopt"><input type="radio" name="timing" value="Dans le mois"><span class="dot"></span><span class="label">Dans le mois qui vient</span></label>
-                <label class="qopt"><input type="radio" name="timing" value="Dans 1 à 3 mois"><span class="dot"></span><span class="label">D'ici 1 à 3 mois</span></label>
-                <label class="qopt"><input type="radio" name="timing" value="Je me renseigne"><span class="dot"></span><span class="label">Je me renseigne pour l'instant</span></label>
+            <fieldset class="step" data-idx="3" hidden style="border:0">
+              <legend class="step-title">Si le plan te convient, tu es prêt à investir dans un accompagnement ?</legend>
+              <div class="options">
+                <label class="opt"><input type="radio" name="pretInvestir" value="Oui, si c'est adapté" required><span class="radio"></span>Oui, si c'est vraiment adapté à moi</label>
+                <label class="opt"><input type="radio" name="pretInvestir" value="Je dois y réfléchir"><span class="radio"></span>Il faut que j'y réfléchisse</label>
+                <label class="opt"><input type="radio" name="pretInvestir" value="Non, je cherche du gratuit"><span class="radio"></span>Non, je cherche une solution gratuite</label>
               </div>
-              <div class="step-actions"><button type="button" class="btn-ghost step-back">← Retour</button></div>
-            </div>
+              <div class="step-actions"><button type="button" class="btn btn-ghost step-back"><i class="ph ph-arrow-left"></i>Retour</button></div>
+            </fieldset>
 
-            <div class="step" data-idx="5" hidden>
-              <p class="step-title">Quelques mesures avant tes coordonnées.</p>
-              <div class="grid3">
-                <label class="field">Âge*<input type="number" name="age" min="16" max="90" inputmode="numeric" required></label>
-                <label class="field">Taille (cm)*<input type="number" name="taille" min="120" max="230" inputmode="numeric" required></label>
-                <label class="field">Poids (kg)*<input type="number" name="poids" min="35" max="250" inputmode="decimal" step="0.1" required></label>
+            <fieldset class="step" data-idx="4" hidden style="border:0">
+              <legend class="step-title">Tu voudrais démarrer quand ?</legend>
+              <div class="options">
+                <label class="opt"><input type="radio" name="timing" value="Dès maintenant" required><span class="radio"></span>Dès que possible</label>
+                <label class="opt"><input type="radio" name="timing" value="Dans le mois"><span class="radio"></span>Dans le mois qui vient</label>
+                <label class="opt"><input type="radio" name="timing" value="Dans 1 à 3 mois"><span class="radio"></span>D'ici 1 à 3 mois</label>
+                <label class="opt"><input type="radio" name="timing" value="Je me renseigne"><span class="radio"></span>Je me renseigne pour l'instant</label>
+              </div>
+              <div class="step-actions"><button type="button" class="btn btn-ghost step-back"><i class="ph ph-arrow-left"></i>Retour</button></div>
+            </fieldset>
+
+            <fieldset class="step" data-idx="5" hidden style="border:0">
+              <legend class="step-title">Quelques mesures avant tes coordonnées</legend>
+              <div class="grid-fields" style="margin-top:24px">
+                <label class="field">Âge<input type="number" name="age" min="16" max="90" inputmode="numeric" required><span class="field-error"></span></label>
+                <label class="field">Taille (cm)<input type="number" name="taille" min="120" max="230" inputmode="numeric" required><span class="field-error"></span></label>
+                <label class="field">Poids (kg)<input type="number" name="poids" min="35" max="250" step="0.1" inputmode="decimal" required><span class="field-error"></span></label>
               </div>
               <div class="step-actions">
-                <button type="button" class="btn-ghost step-back">← Retour</button>
-                <button type="button" class="btn btn-accent btn-sm step-next">Continuer →</button>
+                <button type="button" class="btn btn-ghost step-back"><i class="ph ph-arrow-left"></i>Retour</button>
+                <button type="button" class="btn btn-primary step-next">Continuer <i class="ph ph-arrow-right"></i></button>
               </div>
-            </div>
+            </fieldset>
 
-            <div class="step" data-idx="6" hidden>
-              <p class="step-title">Quelle est ta situation professionnelle ?</p>
-              <div class="qoptions">
-                <label class="qopt"><input type="radio" name="situationPro" value="Salarié" required><span class="dot"></span><span class="label">Salarié</span></label>
-                <label class="qopt"><input type="radio" name="situationPro" value="Indépendant / entrepreneur"><span class="dot"></span><span class="label">Indépendant ou chef d'entreprise</span></label>
-                <label class="qopt"><input type="radio" name="situationPro" value="Cadre / manager"><span class="dot"></span><span class="label">Cadre ou manager</span></label>
-                <label class="qopt"><input type="radio" name="situationPro" value="Sans activité"><span class="dot"></span><span class="label">Sans activité en ce moment</span></label>
+            <fieldset class="step" data-idx="6" hidden style="border:0">
+              <legend class="step-title">Quelle est ta situation professionnelle ?</legend>
+              <div class="options">
+                <label class="opt"><input type="radio" name="situationPro" value="Salarié" required><span class="radio"></span>Salarié</label>
+                <label class="opt"><input type="radio" name="situationPro" value="Indépendant ou chef d'entreprise"><span class="radio"></span>Indépendant ou chef d'entreprise</label>
+                <label class="opt"><input type="radio" name="situationPro" value="Cadre ou manager"><span class="radio"></span>Cadre ou manager</label>
+                <label class="opt"><input type="radio" name="situationPro" value="Sans activité"><span class="radio"></span>Sans activité en ce moment</label>
               </div>
-              <div class="step-actions"><button type="button" class="btn-ghost step-back">← Retour</button></div>
-            </div>
+              <div class="step-actions"><button type="button" class="btn btn-ghost step-back"><i class="ph ph-arrow-left"></i>Retour</button></div>
+            </fieldset>
 
-            <div class="step" data-idx="7" hidden>
-              <p class="step-title">Où puis-je te recontacter ?</p>
-              <label class="field">Prénom*<input type="text" name="firstName" autocomplete="given-name" required></label>
-              <label class="field">Nom*<input type="text" name="lastName" autocomplete="family-name" required></label>
-              <label class="field">Téléphone*<input type="tel" name="phone" autocomplete="tel" required pattern="[0-9+ ().-]{8,}"></label>
-              <label class="field">Email*<input type="email" name="email" autocomplete="email" required></label>
-              <label class="field">Instagram<input type="text" name="instagram" autocomplete="off" placeholder="@tonpseudo"></label>
-              <label class="consent"><input type="checkbox" name="consent" required> J'accepte d'être recontacté par Steven au sujet de ma demande. Mes données ne sont jamais revendues.</label>
+            <fieldset class="step" data-idx="7" hidden style="border:0">
+              <legend class="step-title">Comment te recontacter ?</legend>
+              <label class="field">Prénom<input type="text" name="firstName" autocomplete="given-name" required><span class="field-error"></span></label>
+              <label class="field">Nom<input type="text" name="lastName" autocomplete="family-name" required><span class="field-error"></span></label>
+              <label class="field">Téléphone<input type="tel" name="phone" autocomplete="tel" required pattern="[0-9+ \(\)\.]{8,}" placeholder="06 12 34 56 78"><span class="field-error"></span></label>
+              <label class="field">Email<input type="email" name="email" autocomplete="email" required placeholder="prenom@exemple.fr"><span class="field-error"></span></label>
+              <label class="field">Instagram (facultatif)<input type="text" name="instagram" autocomplete="off" placeholder="@tonpseudo"><span class="field-error"></span></label>
+              <label class="consent"><input type="checkbox" name="consent" required>J'accepte d'être recontacté par Steven au sujet de ma demande. Mes données ne sont jamais revendues.</label>
               <div class="step-actions">
-                <button type="button" class="btn-ghost step-back">← Retour</button>
-                <button type="submit" class="btn btn-accent btn-lg" id="submitBtn">Envoyer →</button>
+                <button type="button" class="btn btn-ghost step-back"><i class="ph ph-arrow-left"></i>Retour</button>
+                <button type="submit" class="btn btn-primary" id="submitBtn">Envoyer ma candidature <i class="ph ph-arrow-right"></i></button>
               </div>
-            </div>
-            <p class="step-error" id="stepError" role="alert"></p>
+            </fieldset>
+            <p class="form-error" id="formError" role="alert"></p>
           </form>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="success" id="successArea" hidden>
-          <div class="success-icon">✓</div>
-          <h3>Candidature reçue, <span id="successName"></span> !</h3>
-          <p class="muted">Je lis chaque réponse personnellement. Tu auras un retour de ma part sous 24h, par WhatsApp ou par email.</p>
-          <button type="button" class="btn-ghost" id="restartQuiz" style="margin-top:14px">↺ Refaire le questionnaire</button>
+  <!-- 8. Coach -->
+  <section id="coach">
+    <div class="container coach-grid">
+      <div class="coach-visual reveal" id="coachVisual"><img src="logo/logo-sp-transparent.svg" alt="Logo SP de Steven Coaching"></div>
+      <div class="reveal">
+        <span class="eyebrow">Ton coach</span>
+        <h2 class="h2">Je m'appelle Steven.<br class="br-md"> Voici comment je travaille.</h2>
+        <div class="stats">
+          <div class="stat"><strong data-countup="10" data-suffix=" ans">0</strong><span>d'entraînement</span></div>
+          <div class="stat"><strong data-countup="100" data-suffix="+">0</strong><span>élèves suivis</span></div>
+          <div class="stat"><strong data-countup="5" data-suffix=" ans">0</strong><span>de coaching</span></div>
+        </div>
+        <div class="coach-body">
+          <h3 class="h3">Je teste tout sur moi avant de te le transmettre</h3>
+          <p>Je connais les plateaux, les semaines où rien ne bouge et les ajustements qui débloquent vraiment la situation.</p>
+          <h3 class="h3">Ton cas, je l'ai probablement déjà rencontré</h3>
+          <p>Le manager qui enchaîne les réunions, le père qui s'entraîne à 6h, celui qui tient toute la semaine et lâche tout le samedi soir. Je sais où ça bloque et comment le corriger.</p>
+          <h3 class="h3">Aucun modèle tout fait</h3>
+          <p>Volume, calories, fréquence : chaque choix part de ta vie réelle, puis s'ajuste selon tes résultats.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TRANSFORMATIONS GALLERY -->
-  <section class="transformations">
+  <!-- 9. Transformations + avis -->
+  <section>
     <div class="container">
-      <p class="eyebrow reveal">Toujours plus de preuves</p>
-      <h2 class="h2 reveal">Autres transformations.</h2>
-      <div class="carousel" data-carousel>
-        <div class="track" id="tfTrack"></div>
+      <div class="section-head center reveal">
+        <span class="eyebrow">Encore plus de preuves</span>
+        <h2 class="h2">Leurs transformations</h2>
+      </div>
+      <div class="gallery reveal-group" id="gallery"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Plus qu'un physique</span>
+        <h2 class="h2">Ce que mes élèves en disent</h2>
+      </div>
+      <div class="carousel reveal" data-carousel>
+        <div class="track" id="reviewsTrack"></div>
         <div class="carousel-foot">
-          <span class="small" data-count></span>
-          <div class="carousel-nav"><button type="button" data-prev aria-label="Précédent">‹</button><button type="button" data-next aria-label="Suivant">›</button></div>
+          <div class="progress-dots" data-dots></div>
+          <div class="carousel-nav">
+            <button type="button" class="icon-btn" data-prev aria-label="Avis précédent"><i class="ph ph-caret-left"></i></button>
+            <button type="button" class="icon-btn" data-next aria-label="Avis suivant"><i class="ph ph-caret-right"></i></button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="about">
-    <div class="container">
-      <p class="eyebrow reveal">Ton coach</p>
-      <h2 class="h2 reveal">Je m'appelle Steven, et voici pourquoi tu peux me faire confiance.</h2>
-      <div class="coach-photo reveal">Photo de Steven</div>
-      <!-- Remplace les valeurs data-count par tes vrais chiffres -->
-      <div class="stats">
-        <div class="stat"><strong data-countup="10" data-suffix=" ans">0</strong><span>d'entraînement</span></div>
-        <div class="stat"><strong data-countup="100" data-suffix="+">0</strong><span>élèves suivis</span></div>
-        <div class="stat"><strong data-countup="5" data-suffix=" ans">0</strong><span>de coaching</span></div>
+  <!-- 10. Pour qui -->
+  <section>
+    <div class="container narrow">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Soyons honnêtes</span>
+        <h2 class="h2">Ce coaching ne s'adresse<br class="br-md"> pas à tout le monde</h2>
       </div>
-      <p class="placeholder-note">Chiffres à ajuster avec tes vraies données</p>
-      <div class="about-body">
-        <h3>Des années sous la barre avant d'en parler.</h3>
-        <p>Tout ce que je transmets, je l'ai d'abord testé sur moi. Je connais les plateaux, les semaines où rien ne bouge et les ajustements qui débloquent vraiment la situation.</p>
-        <h3>Ton cas, je l'ai probablement déjà rencontré.</h3>
-        <p>Le manager qui enchaîne les réunions, le papa qui s'entraîne à 6h du matin, celui qui tient toute la semaine et lâche tout le samedi soir. À force d'accompagner des profils comme le tien, je sais où ça bloque et comment le corriger.</p>
-        <h3>Pas de modèle tout fait.</h3>
-        <p>Ton programme n'est pas sorti d'un calculateur. Chaque choix (volume, calories, fréquence) est fait pour toi, à partir de ta vie réelle, puis ajusté selon tes résultats.</p>
+      <div class="grid reveal-group">
+        <div class="card"><h3 class="h3">Tu es prêt à fournir l'effort</h3><p class="muted" style="margin-top:8px">Je m'occupe du plan et du suivi. Les séances, c'est toi qui les fais.</p></div>
+        <div class="card"><h3 class="h3">Ta vie n'a pas besoin d'être parfaite</h3><p class="muted" style="margin-top:8px">Travail, voyages, enfants, imprévus : le programme est conçu pour s'y adapter.</p></div>
+        <div class="card"><h3 class="h3">Tu veux un vrai changement, pas un PDF de plus</h3><p class="muted" style="margin-top:8px">Ce qui fait la différence ici, c'est le suivi, les ajustements et la mise en pratique.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- OFFER -->
-  <section class="offer">
-    <div class="container">
-      <p class="eyebrow reveal">L'accompagnement</p>
-      <h2 class="h2 reveal">Tout ce que tu reçois.</h2>
-      <p class="muted reveal">Trois mois pendant lesquels chaque détail est organisé pour toi. Tu n'as plus rien à deviner.</p>
-      <div class="offer-list">
-        <div class="offer-item reveal"><span class="check">✓</span><div><h3>Un plan bâti autour de ton emploi du temps</h3><p>Séances et nutrition calées sur tes horaires, tes contraintes et ton objectif.</p></div></div>
-        <div class="offer-item reveal"><span class="check">✓</span><div><h3>Un bilan et des ajustements chaque semaine</h3><p>On regarde tes chiffres ensemble et on corrige le tir avant que tu ne stagnes.</p></div></div>
-        <div class="offer-item reveal"><span class="check">✓</span><div><h3>Correction technique en vidéo</h3><p>Filme tes exercices, je te renvoie des corrections précises pour progresser sans te blesser.</p></div></div>
-        <div class="offer-item reveal"><span class="check">✓</span><div><h3>Accès direct par WhatsApp</h3><p>Un doute, un repas au resto, un déplacement imprévu ? Tu as une réponse sans attendre le prochain bilan.</p></div></div>
-        <div class="offer-item reveal"><span class="check">✓</span><div><h3>Une application de suivi</h3><p>Programme, progression et consignes réunis au même endroit, dans ta poche.</p></div></div>
-        <div class="offer-item reveal"><span class="check">✓</span><div><h3>Le groupe des élèves</h3><p>Avance aux côtés d'hommes qui ont les mêmes objectifs et les mêmes contraintes que toi.</p></div></div>
+  <!-- 11. FAQ -->
+  <section id="faq">
+    <div class="container narrow">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Questions fréquentes</span>
+        <h2 class="h2">Tout ce que tu te demandes</h2>
+      </div>
+      <div class="faq-list reveal-group">
+        <details class="faq-item"><summary>Je m'entraîne depuis des années sans résultat. Ça peut marcher pour moi ?<i class="ph ph-plus"></i></summary><p>C'est le profil le plus fréquent. Quand l'effort est là mais que rien ne bouge, le problème vient presque toujours de la stratégie : volume mal dosé, calories approximatives, aucun ajustement. C'est exactement ce qu'on corrige ensemble.</p></details>
+        <details class="faq-item"><summary>J'ai 40 ans ou plus. Il n'est pas trop tard ?<i class="ph ph-plus"></i></summary><p>Non. La récupération et les priorités changent avec l'âge, donc le plan en tient compte. Beaucoup d'hommes obtiennent leur meilleur physique passé 40 ans, dès qu'ils arrêtent de s'entraîner comme à 20 ans.</p></details>
+        <details class="faq-item"><summary>Mon travail me prend énormément de temps. Je pourrai suivre ?<i class="ph ph-plus"></i></summary><p>Oui. Le programme part de ton temps réellement disponible : trois séances bien construites valent mieux que six bâclées. Ton alimentation est organisée pour tenir avec les déjeuners pro et les déplacements.</p></details>
+        <details class="faq-item"><summary>À quoi ressemble le suivi au quotidien ?<i class="ph ph-plus"></i></summary><p>Tu suis ton programme dans l'application, tu m'envoies ton bilan chaque semaine et on ajuste. Entre deux bilans, tu peux m'écrire sur WhatsApp dès que tu as une question.</p></details>
+        <details class="faq-item"><summary>Combien de temps dure l'accompagnement ?<i class="ph ph-plus"></i></summary><p>Trois mois. C'est le temps qu'il faut pour obtenir des résultats visibles et installer des habitudes qui tiennent sans moi ensuite.</p></details>
+        <details class="faq-item"><summary>Je dois aller en salle ?<i class="ph ph-plus"></i></summary><p>Une salle donne plus d'options, mais le plan peut aussi être construit avec du matériel à la maison. On en parle pendant l'appel.</p></details>
+        <details class="faq-item"><summary>Et après le questionnaire ?<i class="ph ph-plus"></i></summary><p>Je lis tes réponses personnellement. Tu peux réserver directement un appel de 30 minutes. Si je pense pouvoir t'aider, on construit le plan ensemble. Sinon, je te le dis franchement.</p></details>
+        <details class="faq-item"><summary>Remplir le questionnaire m'engage à quelque chose ?<i class="ph ph-plus"></i></summary><p>Non, à rien. Il sert uniquement à vérifier qu'on peut bien travailler ensemble. Tu restes libre de ta décision à chaque étape.</p></details>
       </div>
     </div>
   </section>
 
-  <!-- REVIEWS -->
-  <section class="avis">
-    <div class="container">
-      <p class="eyebrow reveal">Plus qu'un physique</p>
-      <h2 class="h2 reveal">Ce que mes élèves en disent.</h2>
-      <div class="carousel" data-carousel>
-        <div class="track" id="avisTrack"></div>
-        <div class="carousel-foot">
-          <span class="small" data-count></span>
-          <div class="carousel-nav"><button type="button" data-prev aria-label="Précédent">‹</button><button type="button" data-next aria-label="Suivant">›</button></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUALIFICATION -->
-  <section class="qualification">
-    <div class="container">
-      <p class="eyebrow reveal">Soyons honnêtes</p>
-      <h2 class="h2 reveal">Ce coaching ne s'adresse pas à tout le monde.</h2>
-      <div class="qual-list">
-        <div class="qual-item reveal"><h3>Tu es prêt à fournir l'effort.</h3><p>Je m'occupe du plan et du suivi. Les séances, c'est toi qui les fais.</p></div>
-        <div class="qual-item reveal"><h3>Ta vie n'a pas besoin d'être parfaite.</h3><p>Boulot, voyages, enfants, imprévus : le programme est conçu pour s'y adapter.</p></div>
-        <div class="qual-item reveal"><h3>Tu veux un vrai changement, pas un énième PDF.</h3><p>Ce qui fait la différence ici, c'est le suivi, les ajustements et la mise en pratique.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq">
-    <div class="container">
-      <p class="eyebrow reveal">FAQ</p>
-      <h2 class="h2 reveal">Les questions qu'on me pose souvent.</h2>
-      <div class="faq-list">
-        <details class="faq-item"><summary>Je m'entraîne depuis des années sans résultat. Est-ce que ça peut marcher pour moi ?</summary><p>C'est justement le profil le plus fréquent. Quand l'effort est là mais que rien ne bouge, c'est presque toujours une question de stratégie : volume mal dosé, calories approximatives, aucun ajustement. C'est exactement ce qu'on corrige ensemble.</p></details>
-        <details class="faq-item"><summary>J'ai 40 ans ou plus. Il n'est pas trop tard ?</summary><p>Non. La récupération et les priorités changent avec l'âge, donc le plan en tient compte. Beaucoup d'hommes obtiennent leur meilleur physique passé 40 ans, dès qu'ils arrêtent de s'entraîner comme à 20 ans.</p></details>
-        <details class="faq-item"><summary>Mon travail me prend énormément de temps. Je pourrai suivre ?</summary><p>Oui. Le programme part de ton temps réellement disponible : 3 séances bien construites valent mieux que 6 bâclées. On organise aussi ton alimentation pour qu'elle tienne avec les déjeuners pro et les déplacements.</p></details>
-        <details class="faq-item"><summary>À quoi ressemble le suivi au quotidien ?</summary><p>Tu suis ton programme dans l'application, tu m'envoies ton bilan chaque semaine et on ajuste. Entre deux bilans, tu peux m'écrire sur WhatsApp dès que tu as une question.</p></details>
-        <details class="faq-item"><summary>Que se passe-t-il une fois le questionnaire envoyé ?</summary><p>Je lis tes réponses moi-même. Si je pense pouvoir t'aider, je te recontacte sous 24h pour organiser un appel et voir ensemble ce qu'on peut mettre en place. Sinon, je te le dis franchement.</p></details>
-        <details class="faq-item"><summary>Remplir le questionnaire m'engage-t-il à quelque chose ?</summary><p>Non, à rien. Il sert uniquement à vérifier qu'on peut bien travailler ensemble. Tu restes libre de ta décision à chaque étape.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="final-cta">
+  <!-- 12. CTA final -->
+  <section class="final">
     <div class="container">
       <div class="card reveal">
-        <h2 class="h2">Tu sais déjà ce qu'il faut faire.<br><em>Il te manque juste le cadre pour tenir.</em></h2>
-        <p class="muted" style="margin-bottom:22px">Si tu veux qu'on construise ce cadre autour de ta vie, réponds aux 8 questions.</p>
-        <a href="#postuler" class="btn btn-accent btn-lg btn-block">Vérifier mon éligibilité →</a>
-        <p class="cta-meta">8 questions · environ 3 minutes · réponse sous 24h</p>
+        <span class="eyebrow">Prochaine étape</span>
+        <h2 class="h2">Tu sais déjà quoi faire.<br class="br-md"> Construisons le cadre pour que ça dure.</h2>
+        <p class="lede">Réponds aux 8 questions. Si ton profil correspond, on en parle de vive voix cette semaine.</p>
+        <a href="#postuler" class="btn btn-primary">Vérifier mon éligibilité <i class="ph ph-arrow-right"></i></a>
+        <div class="reassure">
+          <span><i class="ph-fill ph-shield-check"></i>Gratuit et sans engagement</span>
+          <span><i class="ph-fill ph-clock"></i>Réponse sous 24h</span>
+          <span><i class="ph-fill ph-lock-simple"></i>Données jamais revendues</span>
+        </div>
       </div>
     </div>
   </section>
@@ -518,245 +395,17 @@ section{padding:64px 0}
 
 <footer class="footer">
   <div class="container">
-    <p>© <span id="year"></span> Steven Coaching. Tous droits réservés.</p>
-    <p style="margin-top:8px"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></p>
+    <p class="small">© <span id="year"></span> Steven Coaching. Tous droits réservés.</p>
+    <nav aria-label="Liens légaux">
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="confidentialite.html">Confidentialité</a>
+      <a href="#" id="instagramLink" hidden target="_blank" rel="noopener">Instagram</a>
+    </nav>
   </div>
 </footer>
 
-<div class="sticky-cta" id="stickyCta"><a href="#postuler" class="btn btn-accent btn-lg btn-block">Vérifier mon éligibilité →</a></div>
+<div class="sticky-cta" id="stickyCta"><a href="#postuler" class="btn btn-primary">Vérifier mon éligibilité <i class="ph ph-arrow-right"></i></a></div>
 
-<script>
-/* ===== CONFIGURATION ===== */
-const CONFIG = {
-  YOUTUBE_ID: '',                    // ex : 'dQw4w9WgXcQ' (ta vidéo de présentation)
-  SUBMIT_URL: '/',                   // Netlify Forms : les candidatures arrivent dans Netlify > Forms > candidature
-  THANKS_URL: 'merci.html',          // page affichée après envoi (réservation de l'appel)
-};
-
-/* Témoignages : remplace par les vrais résultats de tes élèves (avec leur accord). */
-const CASES = [
-  { name: 'Prénom élève', tag: '−X KG · X MOIS', story: 'Décris ici la situation de départ de ton élève : son quotidien, ce qui le bloquait, ce qu\'il avait déjà essayé.',
-    before: ['Contrainte n°1', 'Contrainte n°2', 'Contrainte n°3'], after: ['Ce qu\'on a mis en place n°1', 'Ce qu\'on a mis en place n°2', 'Ce qu\'on a mis en place n°3'],
-    result: '−X kg', resultNote: 'en X mois · résumé du résultat' },
-  { name: 'Prénom élève', tag: '−X KG · X SEM.', story: 'Deuxième histoire client. Reste concret : métier, âge, obstacle principal.',
-    before: ['Avant n°1', 'Avant n°2'], after: ['Après n°1', 'Après n°2'], result: '−X kg', resultNote: 'en X semaines' },
-  { name: 'Prénom élève', tag: '+X KG · X MOIS', story: 'Troisième histoire client, par exemple une prise de masse propre.',
-    before: [], after: ['Après n°1', 'Après n°2'], result: '+X kg', resultNote: 'en X mois' },
-];
-const TRANSFORMATIONS = Array.from({ length: 12 }, (_, i) => ({ label: 'Transformation ' + (i + 1), img: '' }));
-const REVIEWS = Array.from({ length: 6 }, (_, i) => ({ text: 'Colle ici le message ou l\'avis d\'un élève (capture WhatsApp, avis Google…).', who: 'Élève ' + (i + 1) }));
-
-/* ===== RENDU DES CONTENUS ===== */
-const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const li = arr => arr.map(x => `<li>${esc(x)}</li>`).join('');
-
-document.getElementById('casesTrack').innerHTML = CASES.map(c => `
-  <article class="case">
-    <div class="case-head"><span class="case-name">${esc(c.name)}</span><span class="case-tag">${esc(c.tag)}</span></div>
-    <div class="case-photo"><div>Avant</div><div>Après</div></div>
-    <p>${esc(c.story)}</p>
-    <div class="case-lists">
-      ${c.before.length ? `<div class="case-list before"><h4>Point de départ</h4><ul>${li(c.before)}</ul></div>` : ''}
-      ${c.after.length ? `<div class="case-list after"><h4>Ce qu'on a mis en place</h4><ul>${li(c.after)}</ul></div>` : ''}
-    </div>
-    <div class="case-result"><strong>${esc(c.result)}</strong><span>${esc(c.resultNote)}</span></div>
-  </article>`).join('');
-
-document.getElementById('tfTrack').innerHTML = TRANSFORMATIONS.map(t => `
-  <div class="tf">${t.img ? `<img src="${esc(t.img)}" alt="${esc(t.label)}" loading="lazy">` : ''}<span class="tf-label">${esc(t.label)}</span></div>`).join('');
-
-document.getElementById('avisTrack').innerHTML = REVIEWS.map(r => `
-  <div class="review"><span class="stars">★★★★★</span><p>${esc(r.text)}</p><span class="who">${esc(r.who)}</span></div>`).join('');
-
-/* ===== CARROUSELS (boutons, drag souris, compteur, points) ===== */
-const labels = { casesTrack: ['résultat', 'résultats'], tfTrack: ['transformation', 'transformations'], avisTrack: ['avis', 'avis'] };
-document.querySelectorAll('[data-carousel]').forEach(car => {
-  const track = car.querySelector('.track');
-  const items = [...track.children];
-  const prev = car.querySelector('[data-prev]'), next = car.querySelector('[data-next]');
-  const dots = car.querySelector('[data-dots]');
-  const lab = labels[track.id] || ['élément', 'éléments'];
-  car.querySelector('[data-count]').textContent = `${items.length} ${items.length > 1 ? lab[1] : lab[0]}`;
-  if (dots) dots.innerHTML = items.map(() => '<i></i>').join('');
-  const step = () => (items[0]?.offsetWidth || 300) + 14;
-  prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
-  next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
-  const update = () => {
-    const max = track.scrollWidth - track.clientWidth - 2;
-    prev.disabled = track.scrollLeft <= 2;
-    next.disabled = track.scrollLeft >= max;
-    if (dots) {
-      const idx = Math.round(track.scrollLeft / step());
-      [...dots.children].forEach((d, i) => d.classList.toggle('on', i === Math.min(idx, items.length - 1)));
-    }
-  };
-  track.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-  update();
-  // drag à la souris
-  let down = false, startX = 0, startLeft = 0, moved = false;
-  track.addEventListener('mousedown', e => { down = true; moved = false; startX = e.pageX; startLeft = track.scrollLeft; track.classList.add('dragging'); });
-  window.addEventListener('mousemove', e => { if (!down) return; const dx = e.pageX - startX; if (Math.abs(dx) > 4) moved = true; track.scrollLeft = startLeft - dx; });
-  window.addEventListener('mouseup', () => {
-    if (!down) return; down = false; track.classList.remove('dragging');
-    const s = step(); track.scrollTo({ left: Math.round(track.scrollLeft / s) * s, behavior: 'smooth' });
-  });
-  track.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
-});
-
-/* ===== VIDÉO (autoplay muet + bouton "Activer le son") ===== */
-(() => {
-  if (!CONFIG.YOUTUBE_ID) return;
-  const wrap = document.getElementById('vslWrap');
-  document.getElementById('vslPlaceholder').remove();
-  const base = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(CONFIG.YOUTUBE_ID)}?autoplay=1&rel=0&playsinline=1&enablejsapi=1`;
-  const iframe = document.createElement('iframe');
-  iframe.src = base + '&mute=1';
-  iframe.title = 'Vidéo de présentation Steven Coaching';
-  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-  iframe.allowFullscreen = true;
-  wrap.appendChild(iframe);
-  const btn = document.getElementById('vslUnmute');
-  btn.hidden = false;
-  btn.addEventListener('click', () => {
-    // relance depuis le début avec le son
-    iframe.src = base + '&mute=0&start=0';
-    btn.hidden = true;
-  });
-})();
-
-/* ===== QUESTIONNAIRE EN 8 ÉTAPES ===== */
-(() => {
-  const form = document.getElementById('applyForm');
-  const steps = [...form.querySelectorAll('.step')];
-  const rail = document.getElementById('progressRail');
-  const count = document.getElementById('stepCount');
-  const err = document.getElementById('stepError');
-  const total = steps.length;
-  rail.innerHTML = steps.map((_, i) => `<div class="seg" data-i="${i}"></div>`).join('');
-  let cur = 0;
-
-  const show = (i, focus = true) => {
-    cur = i;
-    steps.forEach((s, k) => s.hidden = k !== i);
-    [...rail.children].forEach((seg, k) => { seg.classList.toggle('done', k < i); seg.classList.toggle('active', k === i); });
-    count.textContent = `Étape ${i + 1} / ${total}`;
-    err.textContent = '';
-    if (focus) {
-      const card = document.querySelector('.apply-card');
-      if (card.getBoundingClientRect().top < 60) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    try { sessionStorage.setItem('quizStep', i); } catch (e) {}
-  };
-
-  const validate = i => {
-    const fields = [...steps[i].querySelectorAll('input')];
-    const radios = fields.filter(f => f.type === 'radio');
-    if (radios.length && !radios.some(r => r.checked)) { err.textContent = 'Choisis une réponse pour continuer.'; return false; }
-    let ok = true;
-    fields.filter(f => f.type !== 'radio').forEach(f => {
-      const bad = !f.checkValidity() || (f.required && f.type !== 'checkbox' && !f.value.trim());
-      f.classList.toggle('invalid', bad);
-      if (bad) ok = false;
-    });
-    if (!ok) err.textContent = 'Vérifie les champs en rouge.';
-    return ok;
-  };
-
-  // avance automatique dès qu'une réponse est choisie
-  form.addEventListener('change', e => {
-    if (e.target.type === 'radio') { save(); setTimeout(() => { if (validate(cur) && cur < total - 1) show(cur + 1); }, 260); }
-    if (e.target.classList.contains('invalid')) e.target.classList.toggle('invalid', !e.target.checkValidity());
-  });
-  form.addEventListener('input', e => { save(); if (e.target.classList.contains('invalid') && e.target.checkValidity()) e.target.classList.remove('invalid'); });
-  form.querySelectorAll('.step-back').forEach(b => b.addEventListener('click', () => show(Math.max(0, cur - 1))));
-  form.querySelectorAll('.step-next').forEach(b => b.addEventListener('click', () => { if (validate(cur)) show(cur + 1); }));
-  form.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && e.target.tagName === 'INPUT' && cur < total - 1) { e.preventDefault(); if (validate(cur)) show(cur + 1); }
-  });
-
-  // sauvegarde des réponses (brouillon) pour ne rien perdre en cas de rechargement
-  function save() {
-    try { sessionStorage.setItem('quizData', JSON.stringify(Object.fromEntries(new FormData(form)))); } catch (e) {}
-  }
-  try {
-    const data = JSON.parse(sessionStorage.getItem('quizData') || '{}');
-    Object.entries(data).forEach(([k, v]) => {
-      const el = form.elements[k];
-      if (!el) return;
-      if (el instanceof RadioNodeList) { [...el].forEach(r => r.checked = r.value === v); }
-      else if (el.type === 'checkbox') el.checked = v === 'on';
-      else el.value = v;
-    });
-    const s = parseInt(sessionStorage.getItem('quizStep'), 10);
-    show(Number.isInteger(s) && s < total ? s : 0, false);
-  } catch (e) { show(0, false); }
-
-  document.getElementById('restartQuiz').addEventListener('click', () => {
-    form.reset();
-    form.querySelectorAll('.invalid').forEach(f => f.classList.remove('invalid'));
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = false;
-    btn.textContent = 'Envoyer →';
-    document.getElementById('successArea').hidden = true;
-    document.getElementById('formArea').hidden = false;
-    show(0);
-  });
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!validate(cur)) return;
-    const btn = document.getElementById('submitBtn');
-    const data = Object.fromEntries(new FormData(form));
-    data.submittedAt = new Date().toISOString();
-    data.source = location.href;
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner"></span> Envoi…';
-    try {
-      // Ouvert en local (file://) ou sans endpoint : pas de serveur pour recevoir la candidature, on passe directement à la suite.
-      if (location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(location.hostname) || !CONFIG.SUBMIT_URL) {
-        console.warn('Mode local : candidature non envoyée', data);
-      } else {
-        const res = await fetch(CONFIG.SUBMIT_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data).toString() });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-      }
-      try {
-        sessionStorage.removeItem('quizData'); sessionStorage.removeItem('quizStep');
-        sessionStorage.setItem('leadFirstName', data.firstName);
-      } catch (e) {}
-      location.href = CONFIG.THANKS_URL;
-    } catch (ex) {
-      err.textContent = "L'envoi a échoué. Réessaie dans un instant, ou contacte-moi directement sur Instagram.";
-      btn.disabled = false;
-      btn.textContent = 'Envoyer →';
-    }
-  });
-})();
-
-/* ===== ANIMATIONS AU SCROLL ===== */
-const io = new IntersectionObserver(entries => entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: .12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-const counter = new IntersectionObserver(entries => entries.forEach(en => {
-  if (!en.isIntersecting) return;
-  const el = en.target, target = +el.dataset.countup, suffix = el.dataset.suffix || '', t0 = performance.now(), dur = 1400;
-  const tick = t => { const p = Math.min(1, (t - t0) / dur); el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix; if (p < 1) requestAnimationFrame(tick); };
-  requestAnimationFrame(tick);
-  counter.unobserve(el);
-}), { threshold: .5 });
-document.querySelectorAll('[data-countup]').forEach(el => counter.observe(el));
-
-/* ===== BARRE DU HAUT + CTA COLLANT (mobile) ===== */
-const topbar = document.getElementById('topbar'), sticky = document.getElementById('stickyCta'), apply = document.getElementById('postuler');
-let applyVisible = false;
-new IntersectionObserver(([en]) => { applyVisible = en.isIntersecting; onScroll(); }, { threshold: 0 }).observe(apply);
-function onScroll() {
-  topbar.classList.toggle('scrolled', scrollY > 10);
-  sticky.classList.toggle('show', scrollY > 700 && !applyVisible);
-}
-addEventListener('scroll', onScroll, { passive: true });
-onScroll();
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+<script src="assets/app.js"></script>
 </body>
 </html>
