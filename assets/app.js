@@ -253,6 +253,9 @@ $$('[data-carousel]').forEach(car => {
       }
       store.del('quizData'); store.del('quizStep');
       store.set('leadFirstName', data.firstName);
+      // repris par merci.html pour préremplir la réservation Cal.com
+      store.set('leadName', `${data.firstName} ${data.lastName}`.trim());
+      store.set('leadEmail', data.email);
       location.href = CONFIG.THANKS_URL;
     } catch (ex) {
       formError.textContent = "L'envoi a échoué. Vérifie ta connexion et réessaie. Si le problème continue, contacte Steven sur Instagram.";

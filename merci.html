@@ -15,10 +15,18 @@
 <link rel="stylesheet" href="assets/styles.css">
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 <style>
-  .booking { margin-top: 40px; text-align: center; }
-  .booking .bar { max-width: 320px; margin: 0 auto 24px; }
-  .booking .bar span { transform: scaleX(0); transition: none; }
-  .booking .bar span.go { transform: scaleX(1); transition: transform var(--delay, 3500ms) var(--ease); }
+  .booking { margin-top: 40px; padding: 8px; overflow: hidden; }
+  @media (min-width: 768px) { .booking { padding: 16px; } }
+  .cal-embed { position: relative; min-height: 560px; }
+  .cal-embed iframe { display: block; }
+  .cal-loader { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 16px; text-align: center; padding: 24px; transition: opacity .4s var(--ease); }
+  .cal-loader.off { opacity: 0; pointer-events: none; }
+  .cal-loader .spin { width: 32px; height: 32px; border-radius: 9999px; border: 2px solid var(--line-strong); border-top-color: var(--accent); animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .cal-loader .spin { animation: none; } }
+  .cal-fallback { margin-top: 16px; text-align: center; }
+  .booked { margin-top: 40px; text-align: center; }
+  .booked i { font-size: 40px; color: var(--ok); }
   .next-steps { margin-top: 40px; }
   .next-steps .num { flex: none; width: 24px; height: 24px; border-radius: 9999px; border: 1px solid var(--line-strong); display: grid; place-items: center; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--text); }
   .ok-badge { border-color: rgba(127, 185, 140, .32); color: var(--ok); }
@@ -38,15 +46,29 @@
   <div class="container narrow">
     <span class="badge ok-badge rise"><i class="ph-fill ph-check-circle"></i>Candidature reçue</span>
     <h1 class="h1 rise" style="font-size:36px;line-height:40px">Merci<span id="who"></span>, ta candidature est bien arrivée</h1>
-    <p class="lede rise" style="margin-top:16px">Dernière étape : réserve ton appel découverte. 30 minutes, gratuit, en direct avec Steven.</p>
+    <p class="lede rise" style="margin-top:16px">Dernière étape : choisis ton créneau ci-dessous. 30 minutes, gratuit, en direct avec Steven.</p>
     <p class="small rise" style="margin-top:8px">Si aucun créneau ne te convient, je reviens vers toi sous 24h. Réserver maintenant reste le moyen le plus rapide d'avancer.</p>
+  </div>
 
-    <div class="card booking rise">
-      <div class="bar" aria-hidden="true"><span id="bar"></span></div>
-      <p class="muted" id="status" role="status" style="margin-bottom:24px">Ouverture de mon agenda</p>
-      <a class="btn btn-primary" id="bookBtn" href="index.html#postuler">Choisir mon créneau <i class="ph ph-arrow-right"></i></a>
+  <div class="container">
+    <div class="card booking rise" id="booking">
+      <div class="cal-embed" id="calEmbed">
+        <div class="cal-loader" id="calLoader" role="status">
+          <span class="spin" aria-hidden="true"></span>
+          <p class="muted">Chargement de mon agenda</p>
+        </div>
+      </div>
     </div>
+    <p class="small cal-fallback rise">L'agenda ne s'affiche pas ? <a id="calLink" href="#" target="_blank" rel="noopener">Ouvre-le dans un nouvel onglet</a></p>
 
+    <div class="card booked" id="booked" hidden tabindex="-1">
+      <i class="ph-fill ph-calendar-check" aria-hidden="true"></i>
+      <h2 class="h3" style="margin-top:16px">C'est réservé</h2>
+      <p class="muted" style="margin-top:8px">Tu reçois la confirmation et le lien de l'appel par email. À très vite.</p>
+    </div>
+  </div>
+
+  <div class="container narrow">
     <ol class="list next-steps reveal-group in" style="list-style:none">
       <li><span class="num">1</span><span>Tu choisis l'heure qui t'arrange dans mon agenda.</span></li>
       <li><span class="num">2</span><span>Pendant l'appel, on fait le point sur ta situation et ton objectif.</span></li>
@@ -64,23 +86,36 @@
 
 <script>
 /* ===== CONFIGURATION ===== */
-const BOOKING_URL = 'https://cal.com/steven-coach-y7sqii/30min';   // agenda Cal.com (laisser vide pour désactiver)
-const REDIRECT_DELAY = 3500;   // délai avant redirection automatique (ms)
+const CAL_LINK = 'steven-coach-y7sqii/30min';   // pseudo/événement Cal.com
+const CAL_BRAND = '#FF3B52';                    // couleur des boutons de l'agenda
 
-const btn = document.getElementById('bookBtn'), status = document.getElementById('status'), bar = document.getElementById('bar');
-try { const name = sessionStorage.getItem('leadFirstName'); if (name) document.getElementById('who').textContent = ' ' + name; } catch (e) {}
+const read = k => { try { return sessionStorage.getItem(k) || ''; } catch (e) { return ''; } };
+const firstName = read('leadFirstName');
+if (firstName) document.getElementById('who').textContent = ' ' + firstName;
 document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('calLink').href = 'https://cal.com/' + CAL_LINK;
 
-if (BOOKING_URL) {
-  btn.href = BOOKING_URL;
-  bar.style.setProperty('--delay', REDIRECT_DELAY + 'ms');
-  requestAnimationFrame(() => requestAnimationFrame(() => bar.classList.add('go')));
-  setTimeout(() => { status.textContent = 'Redirection vers mon agenda'; location.href = BOOKING_URL; }, REDIRECT_DELAY);
-} else {
-  bar.parentElement.hidden = true;
-  status.textContent = "L'agenda de réservation n'est pas encore configuré. Je te recontacte sous 24h.";
-  btn.setAttribute('aria-disabled', 'true');
-}
+/* Script d'intégration officiel Cal.com */
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+
+Cal('init', 'rdv', { origin: 'https://cal.com' });
+// le nom et l'email saisis dans le questionnaire sont repris pour que le candidat n'ait qu'à choisir l'heure
+const config = { layout: 'month_view', theme: 'dark' };
+const name = read('leadName'), email = read('leadEmail');
+if (name) config.name = name;
+if (email) config.email = email;
+Cal.ns.rdv('inline', { elementOrSelector: '#calEmbed', calLink: CAL_LINK, config });
+Cal.ns.rdv('ui', { theme: 'dark', layout: 'month_view', hideEventTypeDetails: false, cssVarsPerTheme: { dark: { 'cal-brand': CAL_BRAND } } });
+
+const loader = document.getElementById('calLoader');
+Cal.ns.rdv('on', { action: 'linkReady', callback: () => loader.classList.add('off') });
+Cal.ns.rdv('on', { action: 'linkFailed', callback: () => { loader.querySelector('p').textContent = "L'agenda n'a pas pu se charger. Utilise le lien ci-dessous."; loader.querySelector('.spin').hidden = true; } });
+Cal.ns.rdv('on', { action: 'bookingSuccessful', callback: () => {
+  const booked = document.getElementById('booked');
+  booked.hidden = false;
+  booked.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+  booked.focus({ preventScroll: true });
+} });
 </script>
 </body>
 </html>
