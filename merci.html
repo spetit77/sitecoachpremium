@@ -87,7 +87,7 @@
 <script>
 /* ===== CONFIGURATION ===== */
 const CAL_LINK = 'steven-coach-y7sqii/30min';   // pseudo/événement Cal.com
-const CAL_BRAND = '#FF3B52';                    // couleur des boutons de l'agenda
+const CAL_BRAND = '#FFD000';                    // couleur des boutons de l'agenda
 
 const read = k => { try { return sessionStorage.getItem(k) || ''; } catch (e) { return ''; } };
 const firstName = read('leadFirstName');
@@ -105,7 +105,7 @@ const name = read('leadName'), email = read('leadEmail');
 if (name) config.name = name;
 if (email) config.email = email;
 Cal.ns.rdv('inline', { elementOrSelector: '#calEmbed', calLink: CAL_LINK, config });
-Cal.ns.rdv('ui', { theme: 'dark', layout: 'month_view', hideEventTypeDetails: false, cssVarsPerTheme: { dark: { 'cal-brand': CAL_BRAND } } });
+Cal.ns.rdv('ui', { theme: 'dark', layout: 'month_view', hideEventTypeDetails: false, cssVarsPerTheme: { dark: { 'cal-brand': CAL_BRAND, 'cal-brand-text': '#131209' } } });
 
 const loader = document.getElementById('calLoader');
 Cal.ns.rdv('on', { action: 'linkReady', callback: () => loader.classList.add('off') });
