@@ -9,9 +9,9 @@ const FROM = process.env.LEAD_FROM || 'Steven Coaching <onboarding@resend.dev>';
 
 const LABELS = {
   firstName: 'Prénom', lastName: 'Nom', phone: 'Téléphone', email: 'Email', instagram: 'Instagram',
-  objectif: 'Objectif principal', dureeBlocage: 'Bloqué depuis', obstacle: 'Principal frein',
+  objectif: 'Objectif principal', genre: 'Genre', niveau: 'Niveau', obstacle: 'Principal frein',
   pretInvestir: 'Prêt à investir', timing: 'Démarrage souhaité',
-  age: 'Âge', taille: 'Taille (cm)', poids: 'Poids (kg)', situationPro: 'Situation professionnelle',
+  age: 'Âge', taille: 'Taille (cm)', poids: 'Poids (kg)',
 };
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 

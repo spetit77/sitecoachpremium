@@ -9,16 +9,16 @@ const CONFIG = {
 /* Remplace ces exemples par les vrais résultats de tes élèves (avec leur accord),
    puis passe example à false. Photos : mets le chemin dans before / after. */
 const CASES = [
-  { name: 'Élève 1', meta: '38 ans · cadre', tag: '−9 kg en 4 mois', story: 'Décris la situation de départ : son quotidien, ce qui le bloquait, ce qu\'il avait déjà essayé.', result: '−9 kg', resultNote: 'en 4 mois, sans régime restrictif', before: '', after: '', example: true },
-  { name: 'Élève 2', meta: '42 ans · entrepreneur', tag: '−7 kg en 12 sem.', story: 'Deuxième histoire. Reste concret : métier, âge, obstacle principal et ce qu\'on a changé.', result: '−7 kg', resultNote: 'en 12 semaines', before: '', after: '', example: true },
-  { name: 'Élève 3', meta: '34 ans · salarié', tag: '+6 kg de muscle', story: 'Troisième histoire, par exemple une prise de muscle sans reprendre de gras.', result: '+6 kg', resultNote: 'en 6 mois', before: '', after: '', example: true },
-  { name: 'Élève 4', meta: '46 ans · père de 3 enfants', tag: '−11 kg en 5 mois', story: 'Quatrième histoire. Un profil très chargé montre que le plan s\'adapte à toutes les vies.', result: '−11 kg', resultNote: 'en 5 mois', before: '', after: '', example: true },
+  { name: 'Élève 1', meta: '29 ans · femme', tag: 'Silhouette affinée', story: 'Décris son point de départ : son objectif, ce qui la bloquait, ce qu\'elle avait déjà essayé.', result: '−8 cm', resultNote: 'de tour de taille en 4 mois', before: '', after: '', example: true },
+  { name: 'Élève 2', meta: '33 ans · homme', tag: '+5 kg de muscle', story: 'Une prise de muscle sans reprendre de gras. Précise son niveau de départ et ce qu\'on a changé.', result: '+5 kg', resultNote: 'de muscle en 6 mois', before: '', after: '', example: true },
+  { name: 'Élève 3', meta: '41 ans · femme', tag: 'Recomposition', story: 'Un poids presque stable, mais un corps qui change : moins de gras, des jambes et des fessiers galbés.', result: '−4 kg', resultNote: 'de gras et des muscles dessinés en 5 mois', before: '', after: '', example: true },
+  { name: 'Élève 4', meta: '36 ans · homme', tag: 'Abdos visibles', story: 'Une sèche complète avec un emploi du temps chargé. Raconte ce qui a fait la différence pour lui.', result: '−10 kg', resultNote: 'en 4 mois, abdos visibles', before: '', after: '', example: true },
 ];
 const TRANSFORMATIONS = Array.from({ length: 8 }, (_, i) => ({ label: 'Transformation ' + (i + 1), img: '' }));
 const REVIEWS = [
   { text: 'Colle ici le message d\'un élève : capture WhatsApp, avis Google, retour après un bilan.', name: 'Élève 1', meta: 'Accompagné en 2026', example: true },
-  { text: 'Un avis court et concret fonctionne mieux qu\'un long paragraphe. Garde ses mots à lui.', name: 'Élève 2', meta: 'Accompagné en 2026', example: true },
-  { text: 'Idéalement, un avis qui parle d\'autre chose que du poids : énergie, confiance, sommeil.', name: 'Élève 3', meta: 'Accompagné en 2025', example: true },
+  { text: 'Un avis court et concret fonctionne mieux qu\'un long paragraphe. Garde ses propres mots.', name: 'Élève 2', meta: 'Accompagné en 2026', example: true },
+  { text: 'Idéalement, un avis qui parle d\'autre chose que du poids : confiance, énergie, vêtements qui tombent mieux.', name: 'Élève 3', meta: 'Accompagné en 2025', example: true },
   { text: 'Pense à demander l\'accord de chaque élève avant de publier son avis ou ses photos.', name: 'Élève 4', meta: 'Accompagné en 2025', example: true },
 ];
 
