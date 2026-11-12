@@ -384,6 +384,25 @@ const EASE = 'cubic-bezier(.22, 1, .36, 1)';
   update();
 })();
 
+/* Bande des points forts : avance avec le défilement de la page */
+if (!reduced) (() => {
+  const strip = $('.strip'), track = $('.strip-track');
+  if (!strip || !track) return;
+  const set = track.innerHTML;
+  track.innerHTML = set + set + set;   // trois copies pour couvrir les grands écrans
+  strip.classList.add('is-marquee');
+  let width = track.scrollWidth / 3, ticking = false;
+  const update = () => {
+    ticking = false;
+    const x = (scrollY * .4) % width;
+    track.style.transform = `translate3d(${-x.toFixed(1)}px, 0, 0)`;
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  addEventListener('resize', () => { width = track.scrollWidth / 3; update(); });
+  document.fonts?.ready.then(() => { width = track.scrollWidth / 3; update(); });
+  update();
+})();
+
 /* Curseur personnalisé : point exact + anneau qui suit, souris uniquement */
 if (finePointer && !reduced) (() => {
   const dot = document.createElement('div'), ring = document.createElement('div');
@@ -479,7 +498,7 @@ if (!reduced) (() => {
   $$('.h2').forEach(h => { split(h); h.classList.add('split'); io.observe(h); });
 })();
 
-/* FAQ : ouverture et fermeture en douceur */
+/* FAQ : la réponse glisse et apparaît (transform et opacity uniquement) */
 $$('.faq-item').forEach(d => {
   const summary = $('summary', d), p = $('p', d);
   const body = document.createElement('div');
@@ -491,11 +510,11 @@ $$('.faq-item').forEach(d => {
     d.classList.add('animating');
     if (d.open) {
       d.classList.add('closing');
-      body.animate([{ height: body.offsetHeight + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: 260, easing: EASE })
+      body.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-8px)' }], { duration: 300, easing: EASE })
         .onfinish = () => { d.open = false; d.classList.remove('closing', 'animating'); };
     } else {
       d.open = true;
-      body.animate([{ height: '0px', opacity: 0 }, { height: body.offsetHeight + 'px', opacity: 1 }], { duration: 380, easing: EASE })
+      body.animate([{ opacity: 0, transform: 'translateY(-8px)' }, { opacity: 1, transform: 'none' }], { duration: 500, easing: EASE })
         .onfinish = () => d.classList.remove('animating');
     }
   });
