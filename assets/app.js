@@ -52,7 +52,6 @@ $('#gallery').innerHTML = TRANSFORMATIONS.map(t => `
 
 $('#reviewsTrack').innerHTML = REVIEWS.map(r => `
   <article class="card review">
-    <div class="stars" aria-label="5 étoiles sur 5">${'<i class="ph-fill ph-star"></i>'.repeat(5)}</div>
     <blockquote>${esc(r.text)}</blockquote>
     ${exampleTag(r)}
     <div class="who"><span class="avatar">${esc(r.name.charAt(0))}</span><div><strong>${esc(r.name)}</strong><span>${esc(r.meta)}</span></div></div>
@@ -302,12 +301,8 @@ const quiz = (() => {
 /* ===== BOUTON FLOTTANT ===== */
 (() => {
   const fab = $('#fab');
-  let heroVisible = true, finalVisible = false, nudged = false;
-  const sync = () => {
-    const show = !heroVisible && !finalVisible;
-    fab.classList.toggle('show', show);
-    if (show && !nudged) { nudged = true; setTimeout(() => fab.classList.add('nudge'), 600); }
-  };
+  let heroVisible = true, finalVisible = false;
+  const sync = () => fab.classList.toggle('show', !heroVisible && !finalVisible);
   const watch = (el, set) => new IntersectionObserver(([en]) => { set(en.isIntersecting); sync(); }, { threshold: .15 }).observe(el);
   watch($('.hero-actions'), v => heroVisible = v);
   watch($('.final-box'), v => finalVisible = v);
