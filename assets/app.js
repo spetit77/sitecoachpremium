@@ -104,9 +104,30 @@ if (CONFIG.YOUTUBE_ID) {
   onScroll();
 
   const navLinks = $$('.nav-links a');
+
+  /* pastille qui glisse sous le lien survolé ou actif */
+  const ul = $('.nav-links');
+  const pill = document.createElement('li');
+  pill.className = 'nav-pill'; pill.setAttribute('aria-hidden', 'true');
+  ul.prepend(pill); ul.classList.add('has-pill');
+  let hovering = false;
+  const moveTo = a => {
+    if (!a) { pill.classList.remove('on'); return; }
+    if (!pill.classList.contains('on')) {
+      pill.style.transition = 'none';
+      requestAnimationFrame(() => { pill.style.transition = ''; });
+    }
+    pill.style.width = a.offsetWidth + 'px';
+    pill.style.transform = `translateX(${a.parentElement.offsetLeft}px)`;
+    pill.classList.add('on');
+  };
+  ul.addEventListener('pointerover', e => { const a = e.target.closest('a'); if (a) { hovering = true; moveTo(a); } });
+  ul.addEventListener('pointerleave', () => { hovering = false; moveTo($('a.is-active', ul)); });
+
   const spy = new IntersectionObserver(entries => entries.forEach(en => {
     if (!en.isIntersecting) return;
     navLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + en.target.id));
+    if (!hovering) moveTo($('a.is-active', ul));
   }), { rootMargin: '-45% 0px -50% 0px' });
   navLinks.forEach(a => { const s = $(a.getAttribute('href')); if (s) spy.observe(s); });
 })();
@@ -342,6 +363,143 @@ const counter = new IntersectionObserver(entries => entries.forEach(en => {
   requestAnimationFrame(tick);
 }), { threshold: .6 });
 $$('[data-countup]').forEach(el => counter.observe(el));
+
+/* ===== INTERACTIONS ===== */
+const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const EASE = 'cubic-bezier(.22, 1, .36, 1)';
+
+/* Barre de progression de lecture */
+(() => {
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress'; bar.setAttribute('aria-hidden', 'true');
+  document.body.append(bar);
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  addEventListener('resize', update);
+  update();
+})();
+
+/* Curseur personnalisé : point exact + anneau qui suit, souris uniquement */
+if (finePointer && !reduced) (() => {
+  const dot = document.createElement('div'), ring = document.createElement('div');
+  dot.className = 'cursor-dot'; ring.className = 'cursor-ring';
+  ring.innerHTML = '<span class="cursor-label"></span>';
+  [dot, ring].forEach(el => { el.setAttribute('aria-hidden', 'true'); document.body.append(el); });
+  const label = $('.cursor-label', ring);
+  const root = document.documentElement;
+  root.classList.add('has-cursor');
+
+  let x = -100, y = -100, rx = x, ry = y, shown = false;
+  addEventListener('pointermove', e => {
+    if (e.pointerType !== 'mouse') return;
+    x = e.clientX; y = e.clientY;
+    if (!shown) { shown = true; rx = x; ry = y; root.classList.add('cursor-on'); }
+  }, { passive: true });
+  root.addEventListener('mouseleave', () => { shown = false; root.classList.remove('cursor-on'); });
+
+  const loop = () => {
+    rx += (x - rx) * .18; ry += (y - ry) * .18;
+    dot.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+
+  const DARK = '.dark-section, .feature.dark, .btn-primary, .nav-toggle, .fab-arrow, .portrait, .icon-btn:hover';
+  document.addEventListener('pointerover', e => {
+    const t = e.target;
+    const labelled = t.closest('[data-cursor]');
+    const link = t.closest('a, button, summary, label.opt, .opt, input[type=checkbox]');
+    root.classList.toggle('cursor-label-on', !!labelled && !link);
+    root.classList.toggle('cursor-link', !!link);
+    root.classList.toggle('cursor-dark', !!t.closest(DARK));
+    label.textContent = labelled && !link ? labelled.dataset.cursor : '';
+  });
+  addEventListener('pointerdown', () => root.classList.add('cursor-down'));
+  addEventListener('pointerup', () => root.classList.remove('cursor-down'));
+})();
+
+/* Boutons magnétiques : ils suivent légèrement la souris */
+if (finePointer && !reduced) {
+  $$('.btn-primary, .btn-yellow, .btn-secondary, .icon-btn, .nav-toggle').filter(el => !el.closest('dialog')).forEach(el => {
+    el.classList.add('magnetic');
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      const nx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+      const ny = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+      el.style.setProperty('--mx', (nx * 6).toFixed(1) + 'px');
+      el.style.setProperty('--my', (ny * 4).toFixed(1) + 'px');
+    });
+    el.addEventListener('pointerleave', () => { el.style.setProperty('--mx', '0px'); el.style.setProperty('--my', '0px'); });
+  });
+}
+
+/* Hero : le portrait s'incline et la fiche de bilan se décale avec la souris */
+if (finePointer && !reduced) (() => {
+  const zone = $('.hero'), portrait = $('#heroPortrait'), card = $('.checkin');
+  if (!zone || !portrait) return;
+  zone.addEventListener('pointermove', e => {
+    const r = portrait.getBoundingClientRect();
+    const px = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / innerWidth * 2));
+    const py = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / innerHeight * 2));
+    portrait.style.transform = `perspective(1200px) rotateY(${(px * 4).toFixed(2)}deg) rotateX(${(-py * 4).toFixed(2)}deg)`;
+    if (card) card.style.translate = `${(px * -14).toFixed(1)}px ${(py * -10).toFixed(1)}px`;
+  });
+  zone.addEventListener('pointerleave', () => { portrait.style.transform = ''; if (card) card.style.translate = ''; });
+})();
+
+/* Titres de section révélés mot à mot */
+if (!reduced) (() => {
+  const split = el => {
+    let i = 0;
+    const walk = node => [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.append(part); return; }
+          const outer = document.createElement('span'), inner = document.createElement('span');
+          outer.className = 'wd'; inner.textContent = part;
+          inner.style.transitionDelay = Math.min(i++ * 45, 630) + 'ms';
+          outer.append(inner); frag.append(outer);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1 && n.tagName !== 'BR') walk(n);
+    });
+    walk(el);
+  };
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+  }), { threshold: .4 });
+  $$('.h2').forEach(h => { split(h); h.classList.add('split'); io.observe(h); });
+})();
+
+/* FAQ : ouverture et fermeture en douceur */
+$$('.faq-item').forEach(d => {
+  const summary = $('summary', d), p = $('p', d);
+  const body = document.createElement('div');
+  body.className = 'faq-body'; p.replaceWith(body); body.append(p);
+  if (reduced) return;
+  summary.addEventListener('click', e => {
+    e.preventDefault();
+    if (d.classList.contains('animating')) return;
+    d.classList.add('animating');
+    if (d.open) {
+      d.classList.add('closing');
+      body.animate([{ height: body.offsetHeight + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: 260, easing: EASE })
+        .onfinish = () => { d.open = false; d.classList.remove('closing', 'animating'); };
+    } else {
+      d.open = true;
+      body.animate([{ height: '0px', opacity: 0 }, { height: body.offsetHeight + 'px', opacity: 1 }], { duration: 380, easing: EASE })
+        .onfinish = () => d.classList.remove('animating');
+    }
+  });
+});
 
 /* ===== DIVERS ===== */
 $('#year').textContent = new Date().getFullYear();
