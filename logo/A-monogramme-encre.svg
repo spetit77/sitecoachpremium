@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#E9E4DE"/><stop offset="1" stop-color="#BDB6AE"/>
+    </linearGradient>
+    <linearGradient id="yellowg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFE45C"/><stop offset="1" stop-color="#E6B400"/>
+    </linearGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1A1A1C"/><stop offset="1" stop-color="#0B0B0C"/>
+    </linearGradient>
+  </defs><g transform="translate(6 0)">
+    <g fill="none" stroke-linejoin="round" stroke-linecap="butt" stroke-width="30">
+      <path d="M30 185 H72 A32.5 32.5 0 0 0 72 120 H60 A32.5 32.5 0 0 1 60 55 H165 A32.5 32.5 0 0 1 165 120 H145" stroke="#0B0B0C"/>
+      <path d="M145 40 V200" stroke="#0B0B0C"/>
+    </g>
+    <rect x="176" y="170" width="30" height="30" fill="#F0B000"/></g></svg>

@@ -6,48 +6,54 @@
 <meta name="robots" content="noindex">
 <title>Candidature reçue · Steven Coaching</title>
 <meta name="description" content="Ta candidature est reçue. Réserve ton appel découverte de 30 minutes avec Steven.">
-<meta name="theme-color" content="#131209">
+<meta name="theme-color" content="#F7F4F0">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 <style>
-  .booking { margin-top: 40px; padding: 8px; overflow: hidden; }
+  .thanks-head { padding-top: 24px; }
+  .thanks-head .h1 { font-size: clamp(40px, 6vw, 68px); margin-top: 24px; }
+  .thanks-head .lede { margin-top: 20px; }
+  .booking { margin-top: 40px; padding: 8px; overflow: hidden; box-shadow: var(--shadow); }
   @media (min-width: 768px) { .booking { padding: 16px; } }
   .cal-embed { position: relative; min-height: 560px; }
   .cal-embed iframe { display: block; }
   .cal-loader { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 16px; text-align: center; padding: 24px; transition: opacity .4s var(--ease); }
   .cal-loader.off { opacity: 0; pointer-events: none; }
-  .cal-loader .spin { width: 32px; height: 32px; border-radius: 9999px; border: 2px solid var(--line-strong); border-top-color: var(--accent); animation: spin 1s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .cal-loader .spin { width: 32px; height: 32px; border-radius: 9999px; border: 2px solid var(--paper-3); border-top-color: var(--ink); animation: spin 1s linear infinite; }
   @media (prefers-reduced-motion: reduce) { .cal-loader .spin { animation: none; } }
   .cal-fallback { margin-top: 16px; text-align: center; }
   .booked { margin-top: 40px; text-align: center; }
   .booked i { font-size: 40px; color: var(--ok); }
-  .next-steps { margin-top: 40px; }
-  .next-steps .num { flex: none; width: 24px; height: 24px; border-radius: 9999px; border: 1px solid var(--line-strong); display: grid; place-items: center; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--text); }
-  .ok-badge { border-color: rgba(127, 185, 140, .32); color: var(--ok); }
-  .ok-badge i { font-size: 16px; }
+  .next-steps { margin-top: 56px; gap: 20px; }
+  .next-steps .num { flex: none; width: 36px; height: 36px; border-radius: 12px; background: var(--white); border: 1px solid var(--line); display: grid; place-items: center; font-family: var(--serif); font-size: 20px; }
+  .next-steps li { align-items: center; }
+  .ok-badge i { font-size: 16px; color: var(--ok); }
+  .page-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; max-width: 240px; margin-top: 20px; }
+  .page-steps i { height: 4px; border-radius: 99px; background: var(--ink); }
+  .page-steps i + i { background: var(--yellow-deep); }
 </style>
 </head>
 <body class="page">
 <a class="skip-link" href="#contenu">Aller au contenu</a>
-<header>
+<header class="nav-wrap">
   <nav class="nav" aria-label="Navigation principale">
-    <a href="index.html" class="nav-logo"><img src="logo/A-monogramme.svg" alt="" width="32" height="32">Steven Coaching</a>
+    <a href="index.html" class="nav-logo"><img src="logo/A-monogramme-encre.svg" alt="" width="30" height="30">Steven Coaching</a>
     <a href="index.html" class="btn btn-ghost btn-sm"><i class="ph ph-arrow-left"></i>Accueil</a>
   </nav>
 </header>
 
 <main id="contenu">
-  <div class="container narrow">
-    <span class="badge ok-badge rise"><i class="ph-fill ph-check-circle"></i>Candidature reçue</span>
-    <h1 class="h1 rise" style="font-size:36px;line-height:40px">Merci<span id="who"></span>, ta candidature est bien arrivée</h1>
-    <p class="lede rise" style="margin-top:16px">Dernière étape : choisis ton créneau ci-dessous. 30 minutes, gratuit, en direct avec Steven.</p>
-    <p class="small rise" style="margin-top:8px">Si aucun créneau ne te convient, je reviens vers toi sous 24h. Réserver maintenant reste le moyen le plus rapide d'avancer.</p>
+  <div class="container narrow thanks-head">
+    <span class="badge ok-badge rise"><i class="ph-fill ph-check-circle"></i>Questionnaire reçu</span>
+    <h1 class="h1 rise">Merci<span id="who"></span>. Plus qu'une étape : <span class="mark on">ton créneau.</span></h1>
+    <p class="lede rise">Choisis l'heure qui t'arrange ci-dessous. 30 minutes, gratuit, en direct avec moi.</p>
+    <div class="page-steps rise" aria-hidden="true"><i></i><i></i></div>
+    <p class="small rise" style="margin-top:12px">Si aucun créneau ne te convient, je reviens vers toi sous 24h. Réserver maintenant reste le moyen le plus rapide d'avancer.</p>
   </div>
 
   <div class="container">
@@ -87,7 +93,7 @@
 <script>
 /* ===== CONFIGURATION ===== */
 const CAL_LINK = 'steven-coach-y7sqii/30min';   // pseudo/événement Cal.com
-const CAL_BRAND = '#FFD000';                    // couleur des boutons de l'agenda
+const CAL_BRAND = '#0B0B0C';                    // couleur des boutons de l'agenda (encre du logo)
 
 const read = k => { try { return sessionStorage.getItem(k) || ''; } catch (e) { return ''; } };
 const firstName = read('leadFirstName');
@@ -100,12 +106,12 @@ document.getElementById('calLink').href = 'https://cal.com/' + CAL_LINK;
 
 Cal('init', 'rdv', { origin: 'https://cal.com' });
 // le nom et l'email saisis dans le questionnaire sont repris pour que le candidat n'ait qu'à choisir l'heure
-const config = { layout: 'month_view', theme: 'dark' };
+const config = { layout: 'month_view', theme: 'light' };
 const name = read('leadName'), email = read('leadEmail');
 if (name) config.name = name;
 if (email) config.email = email;
 Cal.ns.rdv('inline', { elementOrSelector: '#calEmbed', calLink: CAL_LINK, config });
-Cal.ns.rdv('ui', { theme: 'dark', layout: 'month_view', hideEventTypeDetails: false, cssVarsPerTheme: { dark: { 'cal-brand': CAL_BRAND, 'cal-brand-text': '#131209' } } });
+Cal.ns.rdv('ui', { theme: 'light', layout: 'month_view', hideEventTypeDetails: false, cssVarsPerTheme: { light: { 'cal-brand': CAL_BRAND, 'cal-brand-text': '#F7F4F0' } } });
 
 const loader = document.getElementById('calLoader');
 Cal.ns.rdv('on', { action: 'linkReady', callback: () => loader.classList.add('off') });

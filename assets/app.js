@@ -1,20 +1,22 @@
 /* ===== CONFIGURATION ===== */
 const CONFIG = {
-  YOUTUBE_ID: '',            // ex : 'dQw4w9WgXcQ' (vidéo de présentation)
-  INSTAGRAM_URL: '',         // ex : 'https://instagram.com/tonpseudo'
-  SUBMIT_URL: '/',           // Netlify Forms : Netlify > Forms > candidature
-  THANKS_URL: 'merci.html',  // page de réservation après envoi
+  YOUTUBE_ID: '',              // ex : 'dQw4w9WgXcQ' : affiche un bouton « Voir la vidéo » sur la photo du hero
+  INSTAGRAM_URL: '',           // ex : 'https://instagram.com/tonpseudo'
+  HERO_PHOTO: '',              // ex : 'photos/steven-hero.jpg' (portrait, format 4:5 conseillé)
+  COACH_PHOTO: '',             // ex : 'photos/steven-coach.jpg'
+  SUBMIT_URL: '/',             // Netlify Forms : Netlify > Forms > candidature
+  THANKS_URL: 'merci.html',    // page de réservation Cal.com après envoi
 };
 
 /* Remplace ces exemples par les vrais résultats de tes élèves (avec leur accord),
-   puis passe example à false. Photos : mets le chemin dans before / after. */
+   puis passe example à false. Photos : mets le chemin dans before / after (ex : 'photos/eleve1-avant.jpg'). */
 const CASES = [
   { name: 'Élève 1', meta: '29 ans · femme', tag: 'Silhouette affinée', story: 'Décris son point de départ : son objectif, ce qui la bloquait, ce qu\'elle avait déjà essayé.', result: '−8 cm', resultNote: 'de tour de taille en 4 mois', before: '', after: '', example: true },
   { name: 'Élève 2', meta: '33 ans · homme', tag: '+5 kg de muscle', story: 'Une prise de muscle sans reprendre de gras. Précise son niveau de départ et ce qu\'on a changé.', result: '+5 kg', resultNote: 'de muscle en 6 mois', before: '', after: '', example: true },
-  { name: 'Élève 3', meta: '41 ans · femme', tag: 'Recomposition', story: 'Un poids presque stable, mais un corps qui change : moins de gras, des jambes et des fessiers galbés.', result: '−4 kg', resultNote: 'de gras et des muscles dessinés en 5 mois', before: '', after: '', example: true },
+  { name: 'Élève 3', meta: '41 ans · femme', tag: 'Recomposition', story: 'Un poids presque stable, mais un corps qui change : moins de gras, des jambes et des fessiers galbés.', result: '−4 kg', resultNote: 'de gras en 5 mois', before: '', after: '', example: true },
   { name: 'Élève 4', meta: '36 ans · homme', tag: 'Abdos visibles', story: 'Une sèche complète avec un emploi du temps chargé. Raconte ce qui a fait la différence pour lui.', result: '−10 kg', resultNote: 'en 4 mois, abdos visibles', before: '', after: '', example: true },
 ];
-const TRANSFORMATIONS = Array.from({ length: 8 }, (_, i) => ({ label: 'Transformation ' + (i + 1), img: '' }));
+const TRANSFORMATIONS = Array.from({ length: 4 }, (_, i) => ({ label: 'Transformation ' + (i + 1), img: '' }));
 const REVIEWS = [
   { text: 'Colle ici le message d\'un élève : capture WhatsApp, avis Google, retour après un bilan.', name: 'Élève 1', meta: 'Accompagné en 2026', example: true },
   { text: 'Un avis court et concret fonctionne mieux qu\'un long paragraphe. Garde ses propres mots.', name: 'Élève 2', meta: 'Accompagné en 2026', example: true },
@@ -56,26 +58,32 @@ $('#reviewsTrack').innerHTML = REVIEWS.map(r => `
     <div class="who"><span class="avatar">${esc(r.name.charAt(0))}</span><div><strong>${esc(r.name)}</strong><span>${esc(r.meta)}</span></div></div>
   </article>`).join('');
 
-/* ===== TITRE DU HERO : apparition mot à mot ===== */
-(() => {
-  const h = $('#heroTitle');
-  let i = 0;
-  h.innerHTML = h.innerHTML.split(/(<br[^>]*>)/).map(part => part.startsWith('<br') ? part :
-    part.split(/(\s+)/).map(w => w.trim() ? `<span class="h1-word" style="animation-delay:${80 + 40 * i++}ms">${w}</span>` : w).join('')).join('');
-  h.classList.add('split');
-  // chaque mot reçoit sa portion du dégradé global, pour un dégradé continu de gauche à droite
-  const paint = () => {
-    const box = h.getBoundingClientRect();
-    $$('.h1-word', h).forEach(w => {
-      const r = w.getBoundingClientRect();
-      w.style.backgroundSize = `${box.width}px 100%`;
-      w.style.backgroundPosition = `${box.left - r.left}px 0`;
-    });
-  };
-  paint();
-  addEventListener('resize', paint);
-  document.fonts?.ready.then(paint);
-})();
+/* Photos du coach : remplacent les emplacements dès qu'un chemin est renseigné */
+const setPhoto = (box, src, alt) => {
+  if (!src) return;
+  const img = new Image();
+  img.className = 'photo-img'; img.alt = alt; img.src = src;
+  img.onload = () => { $('.placeholder', box)?.remove(); box.prepend(img); };
+};
+setPhoto($('#heroPortrait'), CONFIG.HERO_PHOTO, 'Steven, coach sportif');
+setPhoto($('#coachVisual'), CONFIG.COACH_PHOTO, 'Steven pendant une séance de coaching');
+
+/* Vidéo : bouton sur le portrait, chargée seulement au clic */
+if (CONFIG.YOUTUBE_ID) {
+  const box = $('#heroPortrait');
+  const btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'play';
+  btn.innerHTML = '<i class="ph-fill ph-play"></i>Voir la vidéo · 5 min';
+  btn.addEventListener('click', () => {
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(CONFIG.YOUTUBE_ID)}?autoplay=1&rel=0&playsinline=1`;
+    iframe.title = 'Vidéo de présentation de Steven Coaching';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    box.appendChild(iframe); btn.remove();
+  });
+  box.appendChild(btn);
+}
 
 /* ===== NAVIGATION ===== */
 (() => {
@@ -86,41 +94,22 @@ $('#reviewsTrack').innerHTML = REVIEWS.map(r => `
     toggle.setAttribute('aria-expanded', open);
     toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
     menu.setAttribute('aria-hidden', !open);
-    // entrée décalée : 60ms par lien, séquence plafonnée à 400ms
-    links.forEach((a, i) => a.style.transitionDelay = open ? Math.min(i * 60, 400) + 'ms' : '0ms');
+    links.forEach((a, i) => a.style.transitionDelay = open ? Math.min(i * 60, 300) + 'ms' : '0ms');
   };
   toggle.addEventListener('click', () => setOpen(!document.body.classList.contains('menu-open')));
   links.forEach(a => a.addEventListener('click', () => setOpen(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
 
-  // lien actif selon la section visible
+  const onScroll = () => document.body.classList.toggle('scrolled', scrollY > 24);
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
   const navLinks = $$('.nav-links a');
   const spy = new IntersectionObserver(entries => entries.forEach(en => {
     if (!en.isIntersecting) return;
     navLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + en.target.id));
   }), { rootMargin: '-45% 0px -50% 0px' });
   navLinks.forEach(a => { const s = $(a.getAttribute('href')); if (s) spy.observe(s); });
-})();
-
-/* ===== VIDÉO : chargée seulement au clic ===== */
-(() => {
-  const facade = $('#videoFacade');
-  if (!CONFIG.YOUTUBE_ID) {
-    facade.disabled = true;
-    facade.style.cursor = 'default';
-    $('.play', facade).style.opacity = '.4';
-    $('#videoSub').textContent = 'Vidéo bientôt disponible';
-    return;
-  }
-  facade.addEventListener('click', () => {
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(CONFIG.YOUTUBE_ID)}?autoplay=1&rel=0&playsinline=1`;
-    iframe.title = 'Vidéo de présentation de Steven Coaching';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    $('#video').appendChild(iframe);
-    facade.remove();
-  });
 })();
 
 /* ===== CARROUSELS ===== */
@@ -143,7 +132,6 @@ $$('[data-carousel]').forEach(car => {
   track.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   addEventListener('resize', update);
   update();
-  // glisser à la souris
   let down = false, startX = 0, startLeft = 0, moved = false;
   track.addEventListener('mousedown', e => { down = true; moved = false; startX = e.pageX; startLeft = track.scrollLeft; track.classList.add('dragging'); });
   addEventListener('mousemove', e => { if (!down) return; const dx = e.pageX - startX; if (Math.abs(dx) > 4) moved = true; track.scrollLeft = startLeft - dx; });
@@ -155,14 +143,40 @@ $$('[data-carousel]').forEach(car => {
   track.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
 });
 
-/* ===== QUESTIONNAIRE EN 8 ÉTAPES ===== */
-(() => {
+/* ===== QUESTIONNAIRE : fenêtre + 8 étapes ===== */
+const quiz = (() => {
+  const modal = $('#postuler');
   const form = $('#applyForm');
   const steps = $$('.step', form);
   const total = steps.length;
-  const bar = $('#bar'), count = $('#stepCount'), hint = $('#stepHint'), formError = $('#formError');
-  let cur = 0;
+  const segs = $$('#segments i'), count = $('#stepCount'), hint = $('#stepHint'), formError = $('#formError');
+  let cur = 0, opener = null;
 
+  /* ouverture / fermeture */
+  const open = () => {
+    if (modal.open) return;
+    opener = document.activeElement;
+    document.documentElement.classList.add('modal-open');
+    modal.showModal();
+    history.replaceState(null, '', '#postuler');
+    focusStep();
+  };
+  const close = () => { if (modal.open) modal.close(); };
+  modal.addEventListener('close', () => {
+    document.documentElement.classList.remove('modal-open');
+    if (location.hash === '#postuler') history.replaceState(null, '', location.pathname + location.search);
+    opener?.focus?.({ preventScroll: true });
+  });
+  $('#quizClose').addEventListener('click', close);
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });   // clic sur le fond
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href="#postuler"], a[href$="/#postuler"]');
+    if (!a) return;
+    e.preventDefault();
+    open();
+  });
+
+  /* validation */
   const messages = {
     valueMissing: 'Ce champ est obligatoire.',
     typeMismatch: 'Adresse email invalide. Exemple : prenom@exemple.fr',
@@ -178,17 +192,23 @@ $$('[data-carousel]').forEach(car => {
     if (slot) slot.textContent = msg;
   };
 
-  const show = (i, dir = 1, scroll = true) => {
+  const focusStep = () => {
+    const s = steps[cur];
+    const target = $('input:checked', s) || $('input:not([type=hidden])', s);
+    // sur mobile, on évite d'ouvrir le clavier automatiquement
+    if (target && (target.type === 'radio' || matchMedia('(min-width: 768px)').matches)) target.focus({ preventScroll: true });
+    else $('legend', s)?.focus?.();
+  };
+
+  const show = (i, dir = 1) => {
     cur = i;
     steps.forEach((s, k) => { s.hidden = k !== i; s.classList.toggle('back', dir < 0); });
-    bar.style.transform = `scaleX(${(i + 1) / total})`;
+    segs.forEach((g, k) => { g.classList.toggle('done', k < i); g.classList.toggle('cur', k === i); });
     count.textContent = `Étape ${i + 1} sur ${total}`;
     hint.textContent = $('input[type=radio]', steps[i]) ? 'Choisis une réponse' : 'Complète les champs';
     formError.textContent = '';
-    if (scroll) {
-      const card = $('.quiz');
-      if (card.getBoundingClientRect().top < 80) card.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-    }
+    $('.quiz-inner', modal).scrollTop = 0;
+    if (modal.open) focusStep();
     store.set('quizStep', i);
   };
 
@@ -198,7 +218,7 @@ $$('[data-carousel]').forEach(car => {
     if (radios.length && !radios.some(r => r.checked)) { formError.textContent = 'Choisis une réponse pour continuer.'; return false; }
     let ok = true;
     fields.filter(f => f.type !== 'radio').forEach(f => {
-      if (f.type === 'checkbox') { if (!f.checked && f.required) { ok = false; formError.textContent = 'Coche la case de consentement pour envoyer ta candidature.'; } return; }
+      if (f.type === 'checkbox') { if (!f.checked && f.required) { ok = false; formError.textContent = 'Coche la case de consentement pour continuer.'; } return; }
       if (f.required && !f.value.trim()) f.value = '';
       const msg = errorFor(f);
       setFieldError(f, msg);
@@ -212,7 +232,7 @@ $$('[data-carousel]').forEach(car => {
 
   form.addEventListener('change', e => {
     save();
-    if (e.target.type === 'radio') setTimeout(() => { if (validate(cur) && cur < total - 1) show(cur + 1); }, 280);
+    if (e.target.type === 'radio') setTimeout(() => { if (validate(cur) && cur < total - 1) show(cur + 1); }, 320);
   });
   form.addEventListener('input', e => { save(); if (e.target.classList.contains('invalid')) setFieldError(e.target, errorFor(e.target)); });
   form.addEventListener('focusout', e => { if (e.target.matches('.field input') && e.target.value) setFieldError(e.target, errorFor(e.target)); });
@@ -220,6 +240,14 @@ $$('[data-carousel]').forEach(car => {
   $$('.step-next', form).forEach(b => b.addEventListener('click', () => { if (validate(cur)) show(cur + 1); }));
   form.addEventListener('keydown', e => {
     if (e.key === 'Enter' && e.target.matches('.field input') && cur < total - 1) { e.preventDefault(); if (validate(cur)) show(cur + 1); }
+  });
+  // raccourcis clavier A, B, C, D sur les étapes à choix
+  modal.addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey || e.target.matches('input:not([type=radio])')) return;
+    const k = e.key.toUpperCase();
+    if (!/^[A-D]$/.test(k)) return;
+    const radio = $$('input[type=radio]', steps[cur])[k.charCodeAt(0) - 65];
+    if (radio) { radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true })); }
   });
 
   // reprise d'un brouillon
@@ -234,15 +262,16 @@ $$('[data-carousel]').forEach(car => {
     });
   } catch (e) {}
   const saved = parseInt(store.get('quizStep'), 10);
-  show(Number.isInteger(saved) && saved < total ? saved : 0, 1, false);
+  show(Number.isInteger(saved) && saved < total ? saved : 0);
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!validate(cur)) return;
-    const btn = $('#submitBtn');
+    const btn = $('#submitBtn'), label = $('span', btn), icon = $('i', btn);
     const data = Object.fromEntries(new FormData(form));
     btn.classList.add('is-loading');
-    btn.firstChild.textContent = 'Envoi en cours ';
+    label.textContent = 'Envoi en cours';
+    icon.className = 'ph ph-circle-notch';
     formError.textContent = '';
     try {
       // en local, aucun serveur ne reçoit le formulaire : on passe directement à la suite
@@ -252,17 +281,36 @@ $$('[data-carousel]').forEach(car => {
         if (!res.ok) throw new Error('HTTP ' + res.status);
       }
       store.del('quizData'); store.del('quizStep');
-      store.set('leadFirstName', data.firstName);
       // repris par merci.html pour préremplir la réservation Cal.com
+      store.set('leadFirstName', data.firstName);
       store.set('leadName', `${data.firstName} ${data.lastName}`.trim());
       store.set('leadEmail', data.email);
       location.href = CONFIG.THANKS_URL;
     } catch (ex) {
-      formError.textContent = "L'envoi a échoué. Vérifie ta connexion et réessaie. Si le problème continue, contacte Steven sur Instagram.";
+      formError.textContent = "L'envoi a échoué. Vérifie ta connexion et réessaie.";
       btn.classList.remove('is-loading');
-      btn.firstChild.textContent = 'Envoyer ma candidature ';
+      label.textContent = 'Choisir mon créneau';
+      icon.className = 'ph ph-arrow-right';
     }
   });
+
+  // lien direct vers /#postuler (depuis la page 404, une story Instagram…)
+  if (location.hash === '#postuler') open();
+  return { open, isOpen: () => modal.open };
+})();
+
+/* ===== BOUTON FLOTTANT ===== */
+(() => {
+  const fab = $('#fab');
+  let heroVisible = true, finalVisible = false, nudged = false;
+  const sync = () => {
+    const show = !heroVisible && !finalVisible;
+    fab.classList.toggle('show', show);
+    if (show && !nudged) { nudged = true; setTimeout(() => fab.classList.add('nudge'), 600); }
+  };
+  const watch = (el, set) => new IntersectionObserver(([en]) => { set(en.isIntersecting); sync(); }, { threshold: .15 }).observe(el);
+  watch($('.hero-actions'), v => heroVisible = v);
+  watch($('.final-box'), v => finalVisible = v);
 })();
 
 /* ===== PHRASE RÉVÉLÉE MOT À MOT ===== */
@@ -272,18 +320,18 @@ $$('[data-carousel]').forEach(car => {
   p.innerHTML = [...p.childNodes].map(n => n.nodeType === 3 ? wrap(n, false) : wrap(n, true)).join('');
   const words = $$('.w', p);
   if (reduced) { words.forEach(w => w.classList.add('on')); return; }
-  // chaque mot s'allume en franchissant une ligne située à 60% de la hauteur de l'écran
   const io = new IntersectionObserver(entries => entries.forEach(en => {
     if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); }
   }), { rootMargin: '0px 0px -40% 0px' });
   words.forEach(w => io.observe(w));
 })();
 
-/* ===== APPARITIONS ET COMPTEURS ===== */
+/* ===== APPARITIONS, SURLIGNEUR ET COMPTEURS ===== */
 const revealer = new IntersectionObserver(entries => entries.forEach(en => {
   if (en.isIntersecting) { en.target.classList.add('in'); revealer.unobserve(en.target); }
 }), { threshold: .12 });
 $$('.reveal, .reveal-group').forEach(el => revealer.observe(el));
+$$('.mark').forEach(m => m.classList.add('on'));
 
 const counter = new IntersectionObserver(entries => entries.forEach(en => {
   if (!en.isIntersecting) return;
@@ -299,17 +347,6 @@ const counter = new IntersectionObserver(entries => entries.forEach(en => {
   requestAnimationFrame(tick);
 }), { threshold: .6 });
 $$('[data-countup]').forEach(el => counter.observe(el));
-
-/* ===== CTA MOBILE COLLANT ===== */
-(() => {
-  const sticky = $('#stickyCta');
-  let heroVisible = true, applyVisible = false, finalVisible = false;
-  const sync = () => sticky.classList.toggle('show', !heroVisible && !applyVisible && !finalVisible);
-  const watch = (el, set) => new IntersectionObserver(([en]) => { set(en.isIntersecting); sync(); }).observe(el);
-  watch($('.hero'), v => heroVisible = v);
-  watch($('#postuler'), v => applyVisible = v);
-  watch($('.final'), v => finalVisible = v);
-})();
 
 /* ===== DIVERS ===== */
 $('#year').textContent = new Date().getFullYear();

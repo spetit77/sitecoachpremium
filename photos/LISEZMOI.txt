@@ -1,0 +1,9 @@
+Dépose ici tes photos (JPG ou WebP, 1600 px de large maximum) puis indique leur chemin dans assets/app.js :
+
+- photos/steven-hero.jpg   -> CONFIG.HERO_PHOTO   (portrait vertical, format 4:5, en haut de page)
+- photos/steven-coach.jpg  -> CONFIG.COACH_PHOTO  (section « Ton coach »)
+- photos/eleve1-avant.jpg, photos/eleve1-apres.jpg ... -> champs before / after de CASES
+- photos/transfo1.jpg ...  -> champ img de TRANSFORMATIONS
+
+Pense à demander l'accord écrit de chaque élève avant de publier ses photos ou son avis,
+puis passe example: false pour retirer l'étiquette « Exemple à remplacer ».
